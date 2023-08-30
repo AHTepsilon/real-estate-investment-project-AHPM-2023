@@ -1,0 +1,106 @@
+$darkGreen: #2D5F65;
+$gray: #D9D9D9;
+
+@mixin flexSet(){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin inputArea(){
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 30em;
+
+    margin: 1em 0;
+    
+    &-input{
+        margin-top: 1em;
+        border: none;
+        background-color: $gray;
+
+        height: 3em;
+    }
+}
+
+.signup{
+    &-section{
+        @include flexSet();
+        margin: 10em 0;
+
+        &-div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            &-left{
+                @include flexSet();
+                margin: 0 2.5em;
+
+                &-name{
+                    @include inputArea();   
+                }
+
+                &-lname{
+                    @include inputArea();
+                }
+
+                &-username{
+                    @include inputArea();
+                }
+            }
+
+            &-right{
+                @include flexSet();
+                margin: 0 2.5em;
+                
+                &-email{
+                    @include inputArea();   
+                }
+
+                &-pass{
+                    @include inputArea();
+                }
+
+                &-pass2{
+                    @include inputArea();
+                }
+            }
+
+        }
+
+        &-lower{
+            @include flexSet();
+            
+            &-link{
+                margin-bottom: 1em;
+            }
+
+            &-button{
+                background-color: $darkGreen;
+                text-decoration: none;
+        
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        
+                color: #ffffff;
+                margin: 0.5em;
+        
+                width: 20em;
+                height: 3em;
+
+                border: none;
+                border-radius: 10px;
+        
+                &:hover{
+                    background-color: darken($color: $darkGreen, $amount: 4);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

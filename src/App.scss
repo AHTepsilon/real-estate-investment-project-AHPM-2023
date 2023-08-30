@@ -1,0 +1,42 @@
+$darkGreen: #2D5F65;
+
+body{
+    margin: 0;
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15em 0;
+    &-title{
+        font-size: 36px;
+        width: 20em;
+        text-align: center;
+
+        color: $darkGreen;
+        margin-bottom: 2em;
+    }
+
+    &-button{
+        background-color: $darkGreen;
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #ffffff;
+        margin: 0.5em;
+
+        width: 20em;
+        height: 3em;
+        border-radius: 19px;
+
+        &:hover{
+            background-color: darken($color: $darkGreen, $amount: 4);
+            cursor: pointer;
+        }
+    }
+}
