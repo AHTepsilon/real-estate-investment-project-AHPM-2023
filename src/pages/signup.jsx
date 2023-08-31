@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword} from 'firebase/auth'; 
-import { auth } from '../firebase/firebase.js';
+import { auth, db } from '../firebase/firebase.js';
 import { doc, setDoc } from 'firebase/firestore';
 import './signup.scss';
 
@@ -24,14 +24,15 @@ export default class SignUp extends Component {
   createUser = () => {
 
     let email = this.state.email;
-    let name = this.state.name;
-    let lname = this.state.lname;
-    let username = this.state.username;
     let password = this.state.pass;
 
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
       const user = userCredential.user;
-      this.setState({uid: user.uid});
+      console.log(user.uid);
+      this.setState({uid: user.uid}, () => {
+        console.log(this.state.uid);
+        this.sendDataToDatabase(email);
+      });
 
     }).catch((error) => {
       const errorCode = error.code;
@@ -39,11 +40,8 @@ export default class SignUp extends Component {
     })
   }
 
-  async sendDataToDatabase(name, lname, username, email){
+  async sendDataToDatabase(email){
     await setDoc(doc(db, "users", this.state.uid), {
-      name: name,
-      last_name: lname,
-      username: username,
       email: email,
     });
 
@@ -57,10 +55,10 @@ export default class SignUp extends Component {
       <>
       <section className='signup-section'>
         <div className = 'signup-section-div'>
-          <div className = 'signup-section-div-left'>
+         {/* <div className = 'signup-section-div-left'>
             <div className = 'signup-section-div-left-name'>
               <p className='signup-section-div-left-name-label'>Nombre</p>
-              <input className='signup-section-div-left-name-input' type='text' onChange={(e) => {this.setState({name: e.target.value})}}></input>
+              <input className='signup-section-div-left-name-input' type='text' onChange={(e) => {this.setState({name: e.target.value} )}}></input>
             </div>
             <div className = 'signup-section-div-left-lname'>
               <p className='signup-section-div-left-lname-label'>Apellidos</p>
@@ -70,7 +68,7 @@ export default class SignUp extends Component {
               <p className='signup-section-div-left-lname-label'>Nombre de usuario</p>
               <input className='signup-section-div-left-username-input' type='text' onChange={(e) => {this.setState({username: e.target.value})}}></input>
             </div>
-          </div>
+        </div>*/}
           <div className = 'signup-section-div-right'>
             <div className = 'signup-section-div-right-email'>
               <p className='signup-section-div-right-email-label'>Correo electrónico</p>
