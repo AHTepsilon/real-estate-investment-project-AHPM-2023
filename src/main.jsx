@@ -6,17 +6,19 @@ import Header from './components/header.jsx'
 import Footer from './components/footer.jsx'
 import Login from './pages/login.jsx'
 import SignUp from './pages/signup.jsx'
+import Nivelation from './pages/nivelation.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header />
     <Router>
+    <Header />
       <Routes>
         <Route path='/' element={<App />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/nivelation' element={<Nivelation />}></Route>
       </Routes>
-    </Router>
     <Footer />
+    </Router>
   </React.StrictMode>,
 )

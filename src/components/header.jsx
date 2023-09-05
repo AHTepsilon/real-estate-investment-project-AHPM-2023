@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import './styles/header.scss';
 
 export default class Header extends Component {
@@ -14,7 +15,7 @@ export default class Header extends Component {
             <div className='header-container'>
                 <div className='header-container-left-div'>
                     <div className='header-container-left-div-logo-div'>
-                        Logo
+                        <Link to='/'><img src='/logo.png'></img></Link>
                     </div>
                     <div className='header-container-left-div-list-div'>
                         <ul className='header-container-left-div-list-div-ul'>
