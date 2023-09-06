@@ -43,6 +43,19 @@ $darkGreen: #2D5F65;
         }
         &-right-div{
             margin-left: 40em;
+
+            &-notif{
+
+                &-img{
+                    margin-right: 22px;
+                }
+            }
+
+            &-user{
+                &-img{
+                    
+                }
+            }
         }
     }
 }

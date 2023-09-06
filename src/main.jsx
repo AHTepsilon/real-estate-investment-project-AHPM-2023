@@ -9,7 +9,6 @@ import SignUp from './pages/signup.jsx'
 import Nivelation from './pages/nivelation.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Router>
     <Header />
       <Routes>
@@ -20,5 +19,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Routes>
     <Footer />
     </Router>
-  </React.StrictMode>,
 )
