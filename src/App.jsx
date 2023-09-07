@@ -6,19 +6,20 @@ import {Link} from 'react-router-dom'
 import { auth } from './firebase/firebase.js'
 import { onAuthStateChanged } from "firebase/auth";
 
-function CheckConnection(){
+function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
-      return(true);
+      setIsLoggedIn(true);
     } else {
-      return(false);
+      setIsLoggedIn(false);
     }
   });
-  }
 
-function App() {
+  console.log(isLoggedIn);
 
   return (
     <>
