@@ -25,29 +25,37 @@ export default class SignUp extends Component {
 
     let email = this.state.email;
     let password = this.state.pass;
+    let password2 = this.state.pass2;
 
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user.uid);
-      this.setState({uid: user.uid}, () => {
-        console.log(this.state.uid);
-        this.sendDataToDatabase(email);
+    if(password === password2){
+      createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.uid);
+        this.setState({uid: user.uid}, () => {
+          this.sendDataToDatabase(email);
+        });
+  
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        alert(errorMessage);
       });
-
-    }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    })
+    }
+    else{
+      alert("Las contraseñas no coinciden");
+    }
   }
 
   async sendDataToDatabase(email){
     await setDoc(doc(db, "users", this.state.uid), {
       email: email,
+      hasCompletedProfile: false,
     });
 
     alert("Usuario creado con id " + this.state.uid);
 
-    window.location.href = "/";
+    window.location.href = "/profiling";
   }
 
   render() {
@@ -80,7 +88,7 @@ export default class SignUp extends Component {
             </div>
             <div className = 'signup-section-div-right-pass2'>
               <p className='signup-section-div-right-pass2-label'>Confirmar contraseña</p>
-              <input className='signup-section-div-right-pass2-input' type='password'></input>              
+              <input className='signup-section-div-right-pass2-input' type='password' onChange={(e) => {this.setState({pass2: e.target.value})}}></input>              
             </div>
           </div>
         </div>
