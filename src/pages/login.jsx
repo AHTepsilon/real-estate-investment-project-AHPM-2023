@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase/firebase.js';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {redirectLoggedUser} from '../functions/redirectLoggedUser.js';
 import './login.scss'
 
 export default class Login extends Component {
@@ -9,10 +10,15 @@ export default class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
+          isLoggedIn: "",
           email: "",
           pass: "",
         }
     }
+
+  componentDidMount = () => {
+    redirectLoggedUser();
+  }
 
   userLogIn = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)

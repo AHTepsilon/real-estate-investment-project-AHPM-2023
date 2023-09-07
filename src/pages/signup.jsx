@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword} from 'firebase/auth'; 
 import { auth, db } from '../firebase/firebase.js';
 import { doc, setDoc } from 'firebase/firestore';
+import { redirectLoggedUser } from '../functions/redirectLoggedUser.js';
 import './signup.scss';
 
 export default class SignUp extends Component {
@@ -20,6 +21,10 @@ export default class SignUp extends Component {
         }
 
     }
+
+  componentDidMount = () => {
+    redirectLoggedUser();
+  }
 
   createUser = () => {
 

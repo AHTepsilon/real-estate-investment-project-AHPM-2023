@@ -23,11 +23,11 @@ function App() {
 
   return (
     <>
-      <section className='section'>
-        <h2 className='section-title'>Es necesario iniciar sesión o crear una cuenta para usar nuestros servicios</h2>
+      {isLoggedIn === false &&<section className='section'>
+         <h2 className='section-title'>Es necesario iniciar sesión o crear una cuenta para usar nuestros servicios</h2>
         <Link to='/login' className='section-button'>Iniciar Sesión</Link>
         <Link to='/signup' className='section-button'>Crear una Cuenta</Link>
-      </section>
+      </section>}
     </>
   )
 }
