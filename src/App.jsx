@@ -5,6 +5,7 @@ import './App.scss'
 import {Link} from 'react-router-dom'
 import { auth } from './firebase/firebase.js'
 import { onAuthStateChanged } from "firebase/auth";
+import { id } from "./functions/redirectLoggedUser"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   });
 
   console.log(isLoggedIn);
+  console.log(id);
 
   return (
     <>

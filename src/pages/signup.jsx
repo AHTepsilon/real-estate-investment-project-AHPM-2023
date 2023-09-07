@@ -23,7 +23,7 @@ export default class SignUp extends Component {
     }
 
   componentDidMount = () => {
-    redirectLoggedUser();
+    
   }
 
   createUser = () => {
@@ -60,7 +60,7 @@ export default class SignUp extends Component {
 
     alert("Usuario creado con id " + this.state.uid);
 
-    window.location.href = "/profiling";
+    window.location.href = "/nivelation";
   }
 
   render() {

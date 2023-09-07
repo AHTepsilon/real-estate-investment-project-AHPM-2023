@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase/firebase';
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import './styles/header.scss';
 
 export default class Header extends Component {
@@ -23,6 +23,14 @@ export default class Header extends Component {
           });
     }
 
+    async signOut(){
+        signOut(auth).then(() => {
+        window.location.reload(true);
+        }).catch((error) => {
+        console.log(error);
+        });
+    }
+
     render(){
         return <header className='header'>
             <div className='header-container'>
@@ -40,7 +48,7 @@ export default class Header extends Component {
                 </div>
                 {this.state.isLoggedIn === true && <div className='header-container-right-div'>
                         <img className='header-container-right-div-notif-img' src='/notif.png'></img>
-                        <img className='header-container-right-div-user-img' src='/user.png'></img>
+                        <img onClick={this.signOut} className='header-container-right-div-user-img' src='/user.png'></img>
                     </div>}
                 {this.state.isLoggedIn === false && <div className='header-container-right-div'>
                     <a href='' className='header-container-right-div-link'>Acceder</a>
