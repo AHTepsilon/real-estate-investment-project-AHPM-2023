@@ -7,6 +7,7 @@ import Footer from './components/footer.jsx'
 import Login from './pages/login.jsx'
 import SignUp from './pages/signup.jsx'
 import Nivelation from './pages/nivelation.jsx'
+import PropertyShowcase from './pages/propertyShowcase.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/nivelation' element={<Nivelation />}></Route>
+        <Route path='/showcase' element={<PropertyShowcase />}></Route> 
       </Routes>
     <Footer />
     </Router>

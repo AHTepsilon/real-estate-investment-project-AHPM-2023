@@ -30,6 +30,9 @@ function App() {
         <Link to='/login' className='section-button'>Iniciar Sesión</Link>
         <Link to='/signup' className='section-button'>Crear una Cuenta</Link>
       </section>}
+      {isLoggedIn === true &&<section className='section'>
+        <Link to='/showcase' className='section-button'>Ver propiedades</Link>
+      </section>}
     </>
   )
 }
