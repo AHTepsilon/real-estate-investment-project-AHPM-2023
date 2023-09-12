@@ -1,27 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.scss'
 import {Link} from 'react-router-dom'
-import { auth } from './firebase/firebase.js'
+import { auth, db } from './firebase/firebase.js'
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore"
 import { id } from "./functions/redirectLoggedUser"
+import { redirectIfProfileUncomplete } from './functions/redirectIfProfileUncomplete'
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [hasProfiled, setHasProfiled] = useState(false);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
+      setUserId(uid);
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
   });
 
+  redirectIfProfileUncomplete(userId);
+
   console.log(isLoggedIn);
-  console.log(id);
 
   return (
     <>
