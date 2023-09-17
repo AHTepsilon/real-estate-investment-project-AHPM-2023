@@ -22,10 +22,10 @@ export default class PropertyShowcase extends Component {
   }
 
   sendData = async() => {
-    await axios.post('http://localhost:8000/api/rec_system', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-    })
+
+    let dataPending = { firstName: 'Fred', lastName: 'Flintstone'}
+    
+    await axios.post('http://localhost:8000/api/rec_system', {dataPending})
     .then(response => {
       console.log(response.data);
     })
