@@ -21,8 +21,22 @@ export default class PropertyShowcase extends Component {
     }
   }
 
+  sendData = async() => {
+    await axios.post('http://localhost:8000/api/rec_system', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error al enviar datos:', error);
+    });
+  };
+
   componentDidMount(){
     this.getData(this.state.dataToSend);
+    this.sendData();
   }
 
   render() {
