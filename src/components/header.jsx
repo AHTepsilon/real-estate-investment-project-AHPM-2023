@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { db } from '../firebase/firebase';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { setDoc, doc } from 'firebase/firestore';
 import './styles/header.scss';
 
 export default class Header extends Component {
@@ -9,7 +11,9 @@ export default class Header extends Component {
         super(props);
         this.state = {
             isLoggedIn: true,
+            popUpMenu: false,
         }
+        
     }
 
     async componentDidMount() {
@@ -21,6 +25,8 @@ export default class Header extends Component {
               this.setState({isLoggedIn: false});
             }
           });
+
+        await setDoc(doc(db, 'properties'))
     }
 
     async signOut(){
@@ -29,6 +35,10 @@ export default class Header extends Component {
         }).catch((error) => {
         console.log(error);
         });
+    }
+
+    handlePopOutMenu = () => {
+        this.setState({popUpMenu: !this.state.popUpMenu})
     }
 
     render(){
@@ -48,7 +58,7 @@ export default class Header extends Component {
                 </div>
                 {this.state.isLoggedIn === true && <div className='header-container-right-div'>
                         <img className='header-container-right-div-notif-img' src='/notif.png'></img>
-                        <img onClick={this.signOut} className='header-container-right-div-user-img' src='/user.png'></img>
+                        <img onClick={(e) => {this.handlePopOutMenu}} className='header-container-right-div-user-img' src='/user.png'></img>
                     </div>}
                 {this.state.isLoggedIn === false && <div className='header-container-right-div'>
                     <a href='' className='header-container-right-div-link'>Acceder</a>

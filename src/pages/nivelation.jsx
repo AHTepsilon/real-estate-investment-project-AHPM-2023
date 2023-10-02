@@ -23,7 +23,7 @@ class Nivelation extends Component {
             preference_age_level: 0,
             preference_meters_level: 0,
             preference_services_level: 0,
-            preference_zone_level: 0,
+            preference_characteristics_level: 0,
         }
 
     }
@@ -55,12 +55,19 @@ class Nivelation extends Component {
     console.log("risk tolerance ", riskTolerance);
     console.log("financial capacity ", financialCapacity);
 
-    /*await updateDoc(doc(db, "users", this.state.uid), {
+    await updateDoc(doc(db, "users", this.state.uid), {
         investmentLevel: investorLevel,
-        preferences: this.state.importantAspects,
+        investmentExperience: investmentExperience,
+        riskTolerance: riskTolerance,
+        financialCapacity: financialCapacity,
+        preference_location_level: this.state.preference_location_level,
+        preference_age_level: this.state.preference_age_level,
+        preference_meters_level: this.state.preference_meters_level,
+        preference_services_level: this.state.preference_services_level,
+        preference_characteristics_level: this.state.preference_characteristics_level,
         hasCompletedProfile: true,
 
-      }).then(() => {window.location.href = '/'});  */  
+      }).then(() => {window.location.href = '/'}); 
   }
 
   toggleCheck = (e) => {
@@ -207,13 +214,13 @@ class Nivelation extends Component {
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Qué tan importante consideras que son las características (habitaciones, parqueaderos, baños, etc) del inmueble la hora de invertir en el mercado de bienes raíces? (1 siendo menos importante y 7 siendo más importante)</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='1' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='2' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='3' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='4' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='5' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='6' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='zone_radio' value='7' onClick={(e) => {this.setState({preference_zone_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='1' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='2' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='3' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='4' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='5' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='6' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='7' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
                     </div>
                 </div>
             </div>

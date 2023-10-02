@@ -53,7 +53,10 @@ $darkGreen: #2D5F65;
 
             &-user{
                 &-img{
-                    
+
+                &:hover{
+                    cursor: pointer;
+                    }
                 }
             }
         }
