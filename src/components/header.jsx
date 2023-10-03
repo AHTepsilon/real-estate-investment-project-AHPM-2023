@@ -25,8 +25,6 @@ export default class Header extends Component {
               this.setState({isLoggedIn: false});
             }
           });
-
-        await setDoc(doc(db, 'properties'))
     }
 
     async signOut(){
