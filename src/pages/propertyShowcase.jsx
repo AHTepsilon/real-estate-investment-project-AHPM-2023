@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { recSys } from '../functions/recommendationSystem';
-import { setDoc, doc, getDoc, onSnapshot, collection } from 'firebase/firestore';
+import { setDoc, doc, getDoc, onSnapshot, collection, query, where, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../firebase/firebase';
 
@@ -13,6 +13,7 @@ export default class PropertyShowcase extends Component {
             dataToGet: { mensaje: 'Ejemplo', info: 'Ejemplo'},
             id: '',
             userPreferences: [],
+            propertyList: [],
         }
 
     }
@@ -41,9 +42,23 @@ export default class PropertyShowcase extends Component {
         })
     }});
   }
+
+  getProperties = async() => {
+    const q = query(collection(db, "properties"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
+
+  getDataForRecSys = async() => {
+
+  }
   
   componentDidMount = () => {
     this.getData();
+    this.getProperties();
   }
 
   render() {
