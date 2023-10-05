@@ -3,8 +3,9 @@ import { json } from "react-router-dom";
 function getSimilarity(data, propertyData){
 
     let listOfProperties = [];
+    let listOfCosines = [];
     
-    propertyData.forEach((property) => {
+    Object.values(propertyData).forEach((property) => {
 
         listOfProperties.push(window['prop_' + property.id] = 
             [property.califAntiguedad,
@@ -16,29 +17,38 @@ function getSimilarity(data, propertyData){
     });
 
     console.log(listOfProperties)
+
+    let dataset1 = data;
+    console.log("Data: ", dataset1)
+    for(let i = 0; i < listOfProperties.length; i++){
+        let dataset2 = listOfProperties[i];
+
+        let AB = 0;
+        let Ap = 0;
+        let Bp = 0;
     
-    let dataset1 = data
-    let dataset2 = [0.69, 0.01, 0.06, 0.37, 0.54]
+        for (let j = 0; j < 5; j++) {
+            AB += dataset1[j] * dataset2[j];
+            Ap += dataset1[j] ** 2;
+            Bp += dataset2[j] ** 2; 
+          }
+    
+        Ap = Math.sqrt(Ap);
+        Bp = Math.sqrt(Bp);
+    
+        let cosineValue = AB/(Ap * Bp);
+    
+        console.log(listOfProperties[i][5] + ": " + cosineValue);
 
-    let AB = 0;
-    let Ap = 0;
-    let Bp = 0;
+        listOfCosines.push([listOfProperties[i][5], cosineValue]);
+    }
 
-    for (let i = 0; i < dataset1.length; i++) {
-        AB += dataset1[i] * dataset2[i];
-        Ap += dataset1[i] ** 2;
-        Bp += dataset2[i] ** 2;
-      }
-
-    Ap = Math.sqrt(Ap);
-    Bp = Math.sqrt(Bp);
-
-    let cosineValue = AB/(Ap * Bp);
-
-    console.log(cosineValue);
+    let sortedCosines = listOfCosines.sort((a, b) => a[1] - b[1]);
+    console.log(sortedCosines);
 }
 
 function recSys(array, array2){
+    console.log("Data: ", array)
     const data = array;
     const dataProp = array2;
     let cosineSim = 1;
