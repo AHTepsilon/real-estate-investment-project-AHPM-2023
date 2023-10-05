@@ -18,7 +18,18 @@ export default class PropertyShowcase extends Component {
 
     }
 
+    
+  getProperties = async() => {
+    const q = query(collection(db, "properties"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      this.setState({propertyList: this.state.propertyList.push(doc.data())})
+    });
+  }
+
   getData = () => {
+    this.getProperties();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
@@ -35,21 +46,12 @@ export default class PropertyShowcase extends Component {
               docSnap.data().preference_services_level
             ]
             this.setState({userPreferences: receivedPreferencesArr});
-            recSys(receivedPreferencesArr);
+            recSys(receivedPreferencesArr, this.state.propertyList);
           } else {
             console.log("No such document!");
           }
         })
     }});
-  }
-
-  getProperties = async() => {
-    const q = query(collection(db, "properties"));
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
   }
 
   getDataForRecSys = async() => {
@@ -58,7 +60,6 @@ export default class PropertyShowcase extends Component {
   
   componentDidMount = () => {
     this.getData();
-    this.getProperties();
   }
 
   render() {

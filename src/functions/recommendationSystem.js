@@ -1,6 +1,22 @@
 import { json } from "react-router-dom";
 
-function getSimilarity(data){
+function getSimilarity(data, propertyData){
+
+    let listOfProperties = [];
+    
+    propertyData.forEach((property) => {
+
+        listOfProperties.push(window['prop_' + property.califAntiguedad] = 
+            [property.califAntiguedad,
+            property.califCaracteristicas,
+            property.califUbicacion,
+            property.califMetraje,
+            property.califServicios,
+            property.id]);
+    });
+
+    console.log(listOfProperties)
+    
     let dataset1 = data
     let dataset2 = [0.69, 0.01, 0.06, 0.37, 0.54]
 
@@ -22,11 +38,12 @@ function getSimilarity(data){
     console.log(cosineValue);
 }
 
-function recSys(array){
+function recSys(array, array2){
     const data = array;
+    const dataProp = array2;
     let cosineSim = 1;
 
-    getSimilarity(data);
+    getSimilarity(data, dataProp);
 }
 
 export {recSys}
