@@ -25,6 +25,7 @@ export default class PropertyShowcase extends Component {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       this.setState({propertyList: this.state.propertyList.push(doc.data())})
+      console.log(doc.id);
     });
   }
 
@@ -59,6 +60,7 @@ export default class PropertyShowcase extends Component {
   }
   
   componentDidMount = () => {
+    
     this.getData();
   }
 
