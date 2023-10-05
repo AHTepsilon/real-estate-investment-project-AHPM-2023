@@ -6,7 +6,7 @@ function getSimilarity(data, propertyData){
     
     propertyData.forEach((property) => {
 
-        listOfProperties.push(window['prop_' + property.califAntiguedad] = 
+        listOfProperties.push(window['prop_' + property.id] = 
             [property.califAntiguedad,
             property.califCaracteristicas,
             property.califUbicacion,
