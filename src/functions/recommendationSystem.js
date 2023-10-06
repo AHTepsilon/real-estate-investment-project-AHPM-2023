@@ -1,4 +1,8 @@
 import { json } from "react-router-dom";
+import HouseComponent from "../components/houseComponent";
+
+let globalListOfProperties = [];
+let globalListOfCosines = [];
 
 function getSimilarity(data, propertyData){
 
@@ -45,6 +49,13 @@ function getSimilarity(data, propertyData){
 
     let sortedCosines = listOfCosines.sort((a, b) => a[1] - b[1]);
     console.log(sortedCosines);
+
+    globalListOfProperties = listOfProperties;
+    globalListOfCosines = listOfCosines;
+}
+
+function displayProperties(){
+
 }
 
 function recSys(array, array2){
@@ -54,6 +65,7 @@ function recSys(array, array2){
     let cosineSim = 1;
 
     getSimilarity(data, dataProp);
+    displayProperties();
 }
 
-export {recSys}
+export {recSys, globalListOfCosines}
