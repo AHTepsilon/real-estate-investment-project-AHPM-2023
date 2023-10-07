@@ -53,8 +53,13 @@ function GetSimilarity({data, propertyData}){
     console.log(sortedCosines);
 
     return(<div>
-        <PropertyList elements={listOfCosines}/>
-        </div>)
+        {listOfCosines.map((element, index) => {
+            <div key={index}>
+                <h1>AHHHHHH</h1>
+                {element}
+            </div>
+        })}
+    </div>)
       }, 2000);
 }
 

@@ -84,7 +84,7 @@ export default class PropertyShowcase extends Component {
   render() {
     return (
       <section className='propertyShowcase-section' id='propertyShowcase-section'>
-        <GetSimilarity data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
+        <PropertyList data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
       </section>
     )
   }
