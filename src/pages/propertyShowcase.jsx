@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { recSys, globalListOfCosines } from '../functions/recommendationSystem';
+import getSimilarity from '../functions/recommendationSystem';
 import { setDoc, doc, getDoc, onSnapshot, collection, query, where, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../firebase/firebase';
+import PropertyList from '../components/propertyList';
+import GetSimilarity from '../functions/recommendationSystem';
+import { property } from 'underscore';
 
 export default class PropertyShowcase extends Component {
 
@@ -13,7 +16,7 @@ export default class PropertyShowcase extends Component {
             dataToGet: { mensaje: 'Ejemplo', info: 'Ejemplo'},
             id: '',
             userPreferences: [],
-            propertyList: [],
+            listOfProperties: [],
         }
 
     }
@@ -24,12 +27,13 @@ export default class PropertyShowcase extends Component {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      this.setState({propertyList: this.state.propertyList.push(doc.data())})
-      console.log(doc.id);
+      this.setState((prevState) => ({
+        listOfProperties: [...prevState.listOfProperties, doc.data()]
+      }));
     });
   }
 
-  getData = () => {
+  getData = async() => {
     this.getProperties();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -46,8 +50,12 @@ export default class PropertyShowcase extends Component {
               docSnap.data().preference_meters_level,
               docSnap.data().preference_services_level
             ]
-            this.setState({userPreferences: receivedPreferencesArr});
-            recSys(receivedPreferencesArr, this.state.propertyList);
+            console.log(receivedPreferencesArr);
+
+            this.setState(prevState => ({
+              userPreferences: [...prevState.userPreferences, ...receivedPreferencesArr]
+            }));
+
           } else {
             console.log("No such document!");
           }
@@ -56,44 +64,27 @@ export default class PropertyShowcase extends Component {
   }
 
   displayProperties(item){
-    let displaySection = document.getElementById('PropertyShowcase-section');
-    const propertyLink = document.createElement('Link');
-    propertyLink.className = 'propertyShowcase-section-propertyLink';
-    propertyLink.setAttribute('to', `/property.html?id=${item.id}`);
-
-    propertyLink.innerHTML = `
-    <div className='house-div'>
-    <img className='house-div-img' src='/placeholder.jpg'></img>
-    <div className='house-div-info'>
-        <h2 className='house-div-info-price'>${item.price}</h2>
-        <h3 className='house-div-info-neighborhood'>${item.hood}</h3>
-        <div className='house-div-info-lower'>
-            <p className='house-div-info-lower-commune'>Comuna</p>
-            <p className='house-div-info-lower-address'>Dirección</p>
-        </div>
-    </div>
-  </div>
-    `;
-
-    displaySection.appendChild(propertyLink);
-
-  }
-
-  fillDisplaySection = async() => {
-    const collectionRef = collection(db, "propertiers");
-    const {docs} = await getDocs(collectionRef);
     
   }
+
+  fillDisplaySection = () => {
+
+  }
+
+  componentDidUpdate(){
+  }
   
-  componentDidMount = () => {
+  componentDidMount = async() => {
     this.getData();
-    console.log(globalListOfCosines);
+    setTimeout(() => {
+      this.forceUpdate(); 
+    }, 4000);
   }
 
   render() {
     return (
       <section className='propertyShowcase-section' id='propertyShowcase-section'>
-        
+        <GetSimilarity data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
       </section>
     )
   }

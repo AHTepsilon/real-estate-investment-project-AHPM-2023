@@ -1,13 +1,17 @@
 import { json } from "react-router-dom";
 import HouseComponent from "../components/houseComponent";
+import React from "react";
+import PropertyList from "../components/propertyList";
 
-let globalListOfProperties = [];
-let globalListOfCosines = [];
+let listOfProperties;
+let listOfCosines;
 
-function getSimilarity(data, propertyData){
+function GetSimilarity({data, propertyData}){
 
-    let listOfProperties = [];
-    let listOfCosines = [];
+    setTimeout(() => {
+        
+    listOfProperties = [];
+    listOfCosines = [];
     
     Object.values(propertyData).forEach((property) => {
 
@@ -19,8 +23,6 @@ function getSimilarity(data, propertyData){
             property.califServicios,
             property.id]);
     });
-
-    console.log(listOfProperties)
 
     let dataset1 = data;
     console.log("Data: ", dataset1)
@@ -50,22 +52,10 @@ function getSimilarity(data, propertyData){
     let sortedCosines = listOfCosines.sort((a, b) => a[1] - b[1]);
     console.log(sortedCosines);
 
-    globalListOfProperties = listOfProperties;
-    globalListOfCosines = listOfCosines;
+    return(<div>
+        <PropertyList elements={listOfCosines}/>
+        </div>)
+      }, 2000);
 }
 
-function displayProperties(){
-
-}
-
-function recSys(array, array2){
-    console.log("Data: ", array)
-    const data = array;
-    const dataProp = array2;
-    let cosineSim = 1;
-
-    getSimilarity(data, dataProp);
-    displayProperties();
-}
-
-export {recSys, globalListOfCosines}
+export default GetSimilarity;
