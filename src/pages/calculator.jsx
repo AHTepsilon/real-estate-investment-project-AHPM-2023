@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './calculator.scss'
 
 export class Calculator extends Component {
     
