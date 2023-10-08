@@ -48,9 +48,9 @@ export default class Header extends Component {
                     </div>
                     <div className='header-container-left-div-list-div'>
                         <ul className='header-container-left-div-list-div-ul'>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Calculadora de inversión</a></li>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Administrador de inversiones</a></li>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Recursos y documentación</a></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/calculator'>Calculadora de inversión</Link></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/analyzer'>Analizador de inversiones</Link></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/resources'>Recursos y documentación</Link></li>
                         </ul>
                     </div>
                 </div>
