@@ -14,6 +14,7 @@ export class Analyzer extends Component {
     }
 
   performAnalysis = () => {
+    console.log(this.state.data);
     this.setState({analysisClicked: true});
 
     let maxCalculatedRentValue = this.state.data.propertyValue*0.01;
@@ -29,6 +30,11 @@ export class Analyzer extends Component {
   addToData = (value, key) => {
     this.setState({data: {...this.state.data, [key]: value}});
   }
+
+  componentDidUpdate = () => {
+
+  }
+
   render() {
     return (
       <section className='large-analyzer-section'>
@@ -136,9 +142,12 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiemiento?</p>
-              <input type='checkbox' onChange={(e) => {this.addToData(e.target.value, 'useFinancing')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
-            <div className='analyzer-section-inner-div-secondary'>
+            {(this.state.data).useFinancing === false && <div></div>}
+            {(this.state.data).useFinancing === true && 
+            <div>
+              <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Cuota Inicial</p>
               <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
@@ -150,6 +159,8 @@ export class Analyzer extends Component {
               <p className='analyzer-section-inner-div-secondary-tag'>Término (meses)</p>
               <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
+            </div>
+              }
             <button onClick={this.performAnalysis}>
               Analizar
             </button>
