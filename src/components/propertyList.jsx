@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { db, getDoc } from '../firebase/firebase';
+import HouseComponent from './houseComponent';
 
 export default class PropertyList extends Component {
     constructor(props){
@@ -76,10 +76,10 @@ export default class PropertyList extends Component {
         listOfElements.sort((a, b) => {return b[1]-a[1]})
         console.log(listOfElements);
 
-        return(<div>
+        return(<div className='propertylist'>
             {listOfElements.map(element => 
-            <div key={element}>
-                 {element} 
+            <div className='propertylist-element' key={element}>
+                <HouseComponent elementId = {element[0]}></HouseComponent>
             </div>)}
         </div>)
     }
