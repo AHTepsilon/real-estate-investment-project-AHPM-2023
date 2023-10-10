@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { db, getDoc } from '../firebase/firebase';
 
 export default class PropertyList extends Component {
     constructor(props){
@@ -72,8 +73,14 @@ export default class PropertyList extends Component {
     render(){
         let listOfElements = this.state.listOfCosines;
 
+        listOfElements.sort((a, b) => {return b[1]-a[1]})
+        console.log(listOfElements);
+
         return(<div>
-            <h1>AHHHHHH</h1>
+            {listOfElements.map(element => 
+            <div key={element}>
+                 {element} 
+            </div>)}
         </div>)
     }
 }

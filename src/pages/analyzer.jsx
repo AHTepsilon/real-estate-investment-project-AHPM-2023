@@ -173,7 +173,7 @@ export class Analyzer extends Component {
                 Rango de valor de alquiler: 
               </h3>
               <h3 className='right-analyzer-section-container-data'>
-                {this.state.maxRentValue} - {this.state.minRentValue}
+                {this.state.minRentValue} - {this.state.maxRentValue}
               </h3>
             </div>}
         </section>
