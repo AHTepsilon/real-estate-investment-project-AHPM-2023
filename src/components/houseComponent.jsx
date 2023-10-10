@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import './styles/houseComponent.scss'
 import { db } from '../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { Link, useParams } from 'react-router-dom';
 
   function HouseComponent({elementId}){
     const [data, setData] = useState({});
@@ -26,6 +27,7 @@ import { doc, getDoc } from 'firebase/firestore';
     }, [elementId]);
 
     return (
+      <Link to={'/property?id=' + elementId}>
       <div className='house-div'>
         <img className='house-div-img' src='/placeholder.jpg'></img>
         <div className='house-div-info'>
@@ -37,6 +39,7 @@ import { doc, getDoc } from 'firebase/firestore';
             </div>
         </div>
       </div>
+      </Link>
     )
   }
 
