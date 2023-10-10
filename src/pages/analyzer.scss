@@ -1,12 +1,21 @@
-.analyzer-section{
+.large-analyzer-section{
+    display: flex;
+    flex-direction: row;
+    .analyzer-section{
 
-    margin: 2em; 
+        margin: 2em; 
+        
+        &-title{
+          
+        }
     
-    &-title{
-      
+        &-subtitle{
+            
+        }
     }
 
-    &-subtitle{
-        
+    .right-analyzer-section{
+
     }
 }
+
