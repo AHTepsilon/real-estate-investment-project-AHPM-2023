@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { useParams } from 'react-router-dom';
 
-export default class HouseDetailComponent extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
+function HouseDetailComponent(){
+    const {id} = useParams();
+    console.log(id);
+
+    return(
+        <div>
             
-        }
+        </div>
+    )
 
-    }
-
-    render(){
-        
-    }
 }
+
+export default HouseDetailComponent;

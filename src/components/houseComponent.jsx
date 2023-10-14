@@ -27,7 +27,7 @@ import { Link, useParams } from 'react-router-dom';
     }, [elementId]);
 
     return (
-      <Link to={'/property?id=' + elementId}>
+      <Link to={'/property/' + elementId}>
       <div className='house-div'>
         <img className='house-div-img' src='/placeholder.jpg'></img>
         <div className='house-div-info'>
