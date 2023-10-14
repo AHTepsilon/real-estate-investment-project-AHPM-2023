@@ -40,7 +40,7 @@ export class Resources extends Component {
         <h4 className='resources-section-subtitle'>Encuentra información y guías relevantes para adentrarte al mundo de las inversiones en bienes raíces</h4>
         {this.state.listOfResources.map(element => 
             <div className='resources-section-component' key={element.id}>
-                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle}></ResourceComponent>
+                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle} id = {element.id}></ResourceComponent>
             </div>)}
       </section>
     )

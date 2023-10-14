@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/analyzer' element={<Analyzer />}></Route>
         <Route path='/resources' element={<Resources />}></Route>
         <Route path='/property/:id' element={<HouseDetailComponent/>}></Route>
-        <Route path='/resource' element={<ResourceDetailComponent/>}></Route>
+        <Route path='/resources/:id' element={<ResourceDetailComponent/>}></Route>
       </Routes>
     <Footer />
     </Router>
