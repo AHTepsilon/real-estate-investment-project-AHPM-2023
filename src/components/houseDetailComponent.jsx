@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 
 function HouseDetailComponent(){
     const {id} = useParams();
-    console.log(id);
 
     return(
         <div>
-            
+            <h1>Propiedad en venta</h1>
         </div>
     )
 
