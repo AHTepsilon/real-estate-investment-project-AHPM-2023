@@ -1,0 +1,38 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+
+.userPage{
+
+    margin: 1em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    text-align: left;
+
+    &-inner{
+        
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-title{
+            text-align: left;
+        }
+    
+        &-tag{
+            text-align: left;
+        }
+    
+    
+        &-button{
+            width: 10em;
+        }
+    
+        &-link{
+            margin: 1em 0;
+        }
+    }
+}

@@ -13,6 +13,7 @@ import Analyzer from './pages/analyzer.jsx'
 import Resources from './pages/resources.jsx'
 import HouseDetailComponent from './components/houseDetailComponent.jsx'
 import ResourceDetailComponent from './components/resourceDetailComponent.jsx'
+import User from './pages/user.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/resources' element={<Resources />}></Route>
         <Route path='/property/:id' element={<HouseDetailComponent/>}></Route>
         <Route path='/resources/:id' element={<ResourceDetailComponent/>}></Route>
+        <Route path='/user' element={<User/>}></Route>
       </Routes>
     <Footer />
     </Router>

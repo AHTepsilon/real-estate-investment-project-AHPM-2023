@@ -31,9 +31,11 @@ function HouseDetailComponent() {
             <div className='houseDetailComponent'>
                 <h1 className='houseDetailComponent-title'>Propiedad en venta</h1>
                 <img className='houseDetailComponent-img' src={data.imgurl}></img>
-                <h3 className='houseDetailComponent-pesos'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h3>
-                <h3 className='houseDetailComponent-altCurrency'>{(data.precio / 4296).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
-                <h3 className='houseDetailComponent-altCurrency'>{(data.precio / 4489).toLocaleString('en-US', {style: 'currency', currency: 'EUR'})}</h3>
+                <div className='houseDetailComponent-pricediv'>
+                    <h3 className='houseDetailComponent-pricediv-pesos'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h3>
+                    <h3 className='houseDetailComponent-pricediv-altCurrency'>{(data.precio / 4296).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                    <h3 className='houseDetailComponent-pricediv-altCurrency'>{(data.precio / 4489).toLocaleString('en-US', {style: 'currency', currency: 'EUR'})}</h3>
+                </div>
                 <p className='houseDetailComponent-tag'>Barrio: {data.ubicacionBarrio}</p>
                 <p className='houseDetailComponent-tag'>{data.metrajeM2}m²</p>
                 <p className='houseDetailComponent-tag'>Estado: {data.label}</p>

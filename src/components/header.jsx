@@ -27,14 +27,6 @@ export default class Header extends Component {
           });
     }
 
-    async signOut(){
-        signOut(auth).then(() => {
-        window.location.reload(true);
-        }).catch((error) => {
-        console.log(error);
-        });
-    }
-
     handlePopOutMenu = () => {
         this.setState({popUpMenu: !this.state.popUpMenu})
     }
@@ -56,7 +48,7 @@ export default class Header extends Component {
                 </div>
                 {this.state.isLoggedIn === true && <div className='header-container-right-div'>
                         <img className='header-container-right-div-notif-img' src='/notif.png'></img>
-                        <img onClick={(e) => {this.signOut()}} className='header-container-right-div-user-img' src='/user.png'></img>
+                        <Link to='/user'><img className='header-container-right-div-user-img' src='/user.png'></img></Link>
                     </div>}
                 {this.state.isLoggedIn === false && <div className='header-container-right-div'>
                     <a href='' className='header-container-right-div-link'>Acceder</a>
