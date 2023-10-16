@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
+import './styles/houseDetailComponent.scss'
 
 function HouseDetailComponent() {
     const [data, setData] = useState({});
@@ -27,19 +28,20 @@ function HouseDetailComponent() {
 
     try{
         return (
-            <div>
-                <h1>Propiedad en venta</h1>
-                <h3>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h3>
-                <h3>{(data.precio / 4296).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
-                <h3>{(data.precio / 4489).toLocaleString('en-US', {style: 'currency', currency: 'EUR'})}</h3>
-                <p>Barrio: {data.ubicacionBarrio}</p>
-                <p>{data.metrajeM2}m²</p>
-                <p>Estado: {data.label}</p>
-                <p>Antiguedad: Entre {data.antiguedad} y {data.antiguedadFinal} años</p>
-                <ul>
-                    <li>{data.habitaciones} habitaciones</li>
-                    <li>{data.banos} baños</li>
-                    <li>{data.parqueadero} parqueadero(s)</li>
+            <div className='houseDetailComponent'>
+                <h1 className='houseDetailComponent-title'>Propiedad en venta</h1>
+                <img className='houseDetailComponent-img' src={data.imgurl}></img>
+                <h3 className='houseDetailComponent-pesos'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h3>
+                <h3 className='houseDetailComponent-altCurrency'>{(data.precio / 4296).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h3>
+                <h3 className='houseDetailComponent-altCurrency'>{(data.precio / 4489).toLocaleString('en-US', {style: 'currency', currency: 'EUR'})}</h3>
+                <p className='houseDetailComponent-tag'>Barrio: {data.ubicacionBarrio}</p>
+                <p className='houseDetailComponent-tag'>{data.metrajeM2}m²</p>
+                <p className='houseDetailComponent-tag'>Estado: {data.label}</p>
+                <p className='houseDetailComponent-tag'>Antiguedad: Entre {data.antiguedad} y {data.antiguedadFinal} años</p>
+                <ul className='houseDetailComponent-list'>
+                    <li className='houseDetailComponent-list-item'>{data.habitaciones} habitaciones</li>
+                    <li className='houseDetailComponent-list-item'>{data.banos} baños</li>
+                    <li className='houseDetailComponent-list-item'>{data.parqueadero} parqueadero(s)</li>
                 </ul>
     
             </div>

@@ -30,7 +30,7 @@ import { Link, useParams } from 'react-router-dom';
       return (
         <Link to={'/property/' + elementId}>
         <div className='house-div'>
-          <img className='house-div-img' src='/placeholder.jpg'></img>
+          <img className='house-div-img' src={data.imgurl}></img>
           <div className='house-div-info'>
               <h2 className='house-div-info-price'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h2>
               <h3 className='house-div-info-neighborhood'>{data.ubicacionBarrio}</h3>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HouseComponent from './houseComponent';
+import './styles/propertyList.scss'
 
 export default class PropertyList extends Component {
     constructor(props){

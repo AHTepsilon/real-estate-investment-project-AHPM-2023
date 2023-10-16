@@ -7,6 +7,7 @@ import { db, auth } from '../firebase/firebase';
 import PropertyList from '../components/propertyList';
 import GetSimilarity from '../functions/recommendationSystem';
 import { property } from 'underscore';
+import './propertyShowcase.scss'
 
 export default class PropertyShowcase extends Component {
 
@@ -17,6 +18,7 @@ export default class PropertyShowcase extends Component {
             id: '',
             userPreferences: [],
             listOfProperties: [],
+            loading: true,
         }
 
     }
@@ -72,18 +74,25 @@ export default class PropertyShowcase extends Component {
   }
 
   componentDidUpdate(){
+    if(this.state.listOfProperties.length > 0){
+      setTimeout(() => {
+        this.setState({loading: false})
+      }, 3000);
+    }
   }
   
   componentDidMount = async() => {
     this.getData();
-    setTimeout(() => {
-      this.forceUpdate(); 
-    }, 4000);
   }
 
   render() {
     return (
       <section className='propertyShowcase-section' id='propertyShowcase-section'>
+        {this.state.loading && 
+        <div className='propertyShowcase-section-loadDiv'>
+          <img className='propertyShowcase-section-loadDiv-loadIcon' src='loading-icon.svg'></img>
+          <h3  className='propertyShowcase-section-loadDiv-tag'>Cargando propiedades...</h3>
+        </div>}
         <PropertyList data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
       </section>
     )
