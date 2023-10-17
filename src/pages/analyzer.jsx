@@ -7,9 +7,15 @@ export class Analyzer extends Component {
         super(props);
         this.state = {
           analysisClicked: false,
-          data: {},
+          data: {propertyValue: 0, propertyExtraCosts: 0, downPayment: 0},
           maxRentValue: '',
           minRentValue: '',
+          maxEarningsAfterYear: '',
+          minEarningsAfterYear: '',
+          minRoi: '',
+          maxRoi: '',
+          maxTimeForInvestmentReturn: '',
+          minTimeForInvestmentReturn: '',
           communeAvgPrice: {
             '1': 0,
             '2': 3160000,
@@ -43,6 +49,8 @@ export class Analyzer extends Component {
             'six': 4355000,
           },
           selectedStratumPrice: 0,
+          pricePerM2: 0,
+          totalLoanPayment: 0,
         }
     }
 
@@ -50,36 +58,58 @@ export class Analyzer extends Component {
     console.log(this.state.data);
     this.setState({analysisClicked: true});
 
+    this.setState({pricePerM2: (this.state.data.propertyValue / this.state.data.meters).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
+
     let maxCalculatedRentValue = this.state.data.propertyValue*0.01;
     let minCalculatedRentValue = this.state.data.propertyValue*0.005;
 
     let formattedMaxCalculatedRentValue = maxCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
     let formattedMinCalculatedRentValue = minCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
 
+    this.setState({maxEarningsAfterYear: (maxCalculatedRentValue*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    this.setState({minEarningsAfterYear: (minCalculatedRentValue*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+
     this.setState({maxRentValue: formattedMaxCalculatedRentValue});
     this.setState({minRentValue: formattedMinCalculatedRentValue});
 
+    let minTimeReturn = 0;
+    let maxTimeReturn = 0;
+
+    for(let i = 0; i < this.state.data.propertyValue; i += (minCalculatedRentValue*12)){
+      minTimeReturn+=1;
+    }
+    for(let i = 0; i < this.state.data.propertyValue; i += (maxCalculatedRentValue*12)){
+      maxTimeReturn+=1;
+    }
+
+    this.setState({minTimeForInvestmentReturn: minTimeReturn});
+    this.setState({maxTimeForInvestmentReturn: maxTimeReturn});
+
     switch(this.state.data.stratum){
       case '1':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.one});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.one).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
       case '2':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.two});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.two).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
       case '3':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.three});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.three).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
       case '4':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.four});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.four).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
       case '5':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.five});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.five).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
       case '6':
-        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.six});
+        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.six).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
         break;
-
     }
+
+    let loanPayment = ((((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100))
+    let interests = loanPayment * (this.state.data.interestRate / 100)
+
+    this.setState({totalLoanPayment: (loanPayment + interests).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
   }
 
   addToData = (value, key) => {
@@ -196,23 +226,39 @@ export class Analyzer extends Component {
               <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiemiento?</p>
+              <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
               <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
             <div>
               <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>Cuota Inicial</p>
+              <p className='analyzer-section-inner-div-secondary-tag'>Cuota inicial</p>
               <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>Intereses</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje del préstamo</p>
+              <input type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
+                <datalist id="interestPercentages">
+                  <option value={20}></option>
+                  <option value={30}></option>
+                  <option value={40}></option>
+                  <option value={50}></option>
+                  <option value={60}></option>
+                  <option value={70}></option>
+                </datalist>
+              <p>{this.state.data.interestPercentage}%</p>
+              <p>{(((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>Término (meses)</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p className='analyzer-section-inner-div-secondary-tag'>Término (años)</p>
+              <input type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p>{this.state.data.loanTerm} años</p>
+            </div>
+            <div className='analyzer-section-inner-div-secondary'>
+              <p className='analyzer-section-inner-div-secondary-tag'>Tasa de interés</p>
+              <input type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p>{this.state.data.interestRate}%</p>
             </div>
             </div>
               }
@@ -231,10 +277,34 @@ export class Analyzer extends Component {
                 {this.state.minRentValue} - {this.state.maxRentValue}
               </h4>
               <h3 className='right-analyzer-section-container-tag'>
+                A 12 meses puedes obtener un retorno de entre
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.minEarningsAfterYear} y {this.state.maxEarningsAfterYear}
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
+                Años para obtener un retorno completo de la inversión
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                Entre {this.state.minTimeForInvestmentReturn} y {this.state.maxTimeForInvestmentReturn} años
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
+                Valor por medio cuadrado de esta propiedad
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.pricePerM2}
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
                 Promedio de valor por m² (según el estrato)
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
+                Pago total del préstamo
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.totalLoanPayment}
               </h4>
             </div>}
         </section>
