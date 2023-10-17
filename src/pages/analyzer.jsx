@@ -51,6 +51,7 @@ export class Analyzer extends Component {
           selectedStratumPrice: 0,
           pricePerM2: 0,
           totalLoanPayment: 0,
+          monthlyPayment: 0,
         }
     }
 
@@ -110,6 +111,11 @@ export class Analyzer extends Component {
     let interests = loanPayment * (this.state.data.interestRate / 100)
 
     this.setState({totalLoanPayment: (loanPayment + interests).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
+  
+    let monthlyPayment = (loanPayment + interests) / (this.state.data.loanTerm * 12)
+
+    this.setState({monthlyPayment: monthlyPayment.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    
   }
 
   addToData = (value, key) => {
@@ -305,6 +311,12 @@ export class Analyzer extends Component {
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.totalLoanPayment}
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
+                Pago mensual del préstamo
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.monthlyPayment}
               </h4>
             </div>}
         </section>
