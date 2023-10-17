@@ -10,6 +10,39 @@ export class Analyzer extends Component {
           data: {},
           maxRentValue: '',
           minRentValue: '',
+          communeAvgPrice: {
+            '1': 0,
+            '2': 3160000,
+            '3': 2905000,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+            '8': 0,
+            '9': 0,
+            '10': 0,
+            '11': 0,
+            '12': 0,
+            '13': 0,
+            '14': 0,
+            '15': 0,
+            '16': 0,
+            '17': 3363000,
+            '18': 0,
+            '19': 3166000,
+            '20': 0,
+            '21': 0,
+            '22': 4327000,
+          },
+          stratumAvgPrice: {
+            'one': 1850000,
+            'two': 1916000,
+            'three': 2167000,
+            'four': 2850000,
+            'five': 3374000,
+            'six': 4355000,
+          },
+          selectedStratumPrice: 0,
         }
     }
 
@@ -25,6 +58,28 @@ export class Analyzer extends Component {
 
     this.setState({maxRentValue: formattedMaxCalculatedRentValue});
     this.setState({minRentValue: formattedMinCalculatedRentValue});
+
+    switch(this.state.data.stratum){
+      case '1':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.one});
+        break;
+      case '2':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.two});
+        break;
+      case '3':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.three});
+        break;
+      case '4':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.four});
+        break;
+      case '5':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.five});
+        break;
+      case '6':
+        this.setState({selectedStratumPrice: this.state.stratumAvgPrice.six});
+        break;
+
+    }
   }
 
   addToData = (value, key) => {
@@ -80,7 +135,7 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Estrato</p>
-              <select name="stract" onChange={(e) => {this.addToData(e.target.value, 'stract')}} className='analyzer-section-inner-div-secondary-select' id="">
+              <select name="stratum" onChange={(e) => {this.addToData(e.target.value, 'stratum')}} className='analyzer-section-inner-div-secondary-select' id="">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -172,9 +227,15 @@ export class Analyzer extends Component {
               <h3 className='right-analyzer-section-container-tag'>
                 Rango de valor de alquiler: 
               </h3>
-              <h3 className='right-analyzer-section-container-data'>
+              <h4 className='right-analyzer-section-container-data'>
                 {this.state.minRentValue} - {this.state.maxRentValue}
+              </h4>
+              <h3 className='right-analyzer-section-container-tag'>
+                Promedio de valor por m² (según el estrato)
               </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.selectedStratumPrice}
+              </h4>
             </div>}
         </section>
       </section>
