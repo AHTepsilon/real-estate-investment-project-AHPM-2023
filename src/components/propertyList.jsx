@@ -73,20 +73,21 @@ export default class PropertyList extends Component {
             Bp = Math.sqrt(Bp);
         
             let cosineValue = AB/(Ap * Bp);
-        
-            console.log(listOfProperties[i][5] + ": " + cosineValue);
     
             listOfCosines.push([listOfProperties[i][5], cosineValue]);
         }
     
         let sortedCosines = listOfCosines.sort((a, b) => a[1] - b[1]);
-        console.log('sorted cosines: ', sortedCosines);
 
         this.setState(prevState => ({
             listOfCosines: [...prevState.listOfCosines, ...sortedCosines]
           }));
 
         localStorage.setItem('cosineList', JSON.stringify(sortedCosines));
+
+        sortedCosines.forEach((element) => {
+            localStorage.setItem(element[0], element[1]);
+        })
     }
 
     componentDidMount(){
@@ -100,7 +101,6 @@ export default class PropertyList extends Component {
         let listOfElements = this.state.listOfCosines;
 
         listOfElements.sort((a, b) => {return b[1]-a[1]})
-        console.log(listOfElements);
 
         return(<div className='propertylist'>
             {listOfElements.map(element => 
