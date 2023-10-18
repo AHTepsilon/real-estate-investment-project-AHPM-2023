@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import HouseComponent from './houseComponent';
-import './styles/propertyList.scss'
+import './styles/propertyList.scss';
+import { db, auth } from "../firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 
 export default class PropertyList extends Component {
     constructor(props){
@@ -8,9 +11,29 @@ export default class PropertyList extends Component {
         this.state = {
             data: props.data,
             propertyData: props.propertyData,
-            listOfCosines: []
+            listOfCosines: [],
+            userId: '',
         }
 
+    }
+
+    async uploadSimilaritiesToDatabase(sortedCosines){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                    this.setState({userId: user.uid});
+                } else {
+                }
+            });
+    
+            await sortedCosines.forEach((element) => {
+                console.log('userId', this.state.userId);
+                const similarityRef = doc(db, "similarities", this.state.userId);
+                setDoc(similarityRef, {
+                    id: element[0],
+                    similarity: element[1]*100,
+                });
+    
+        })
     }
 
     getSimilarity(props){
@@ -62,13 +85,15 @@ export default class PropertyList extends Component {
         this.setState(prevState => ({
             listOfCosines: [...prevState.listOfCosines, ...sortedCosines]
           }));
+
+        localStorage.setItem('cosineList', JSON.stringify(sortedCosines));
     }
 
     componentDidMount(){
         setTimeout(() => {
             this.getSimilarity(this.props);
             this.forceUpdate();
-          }, 4000);
+          }, 5000);
     }
 
     render(){

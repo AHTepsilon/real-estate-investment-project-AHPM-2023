@@ -2,11 +2,17 @@ import { json } from "react-router-dom";
 import HouseComponent from "../components/houseComponent";
 import React from "react";
 import PropertyList from "../components/propertyList";
+import { useState } from "react";
+import { db, auth } from "../firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 
 let listOfProperties;
 let listOfCosines;
 
 function GetSimilarity({data, propertyData}){
+
+    const [userId, setUserId] = useState('');
 
     setTimeout(() => {
         
@@ -46,7 +52,7 @@ function GetSimilarity({data, propertyData}){
     
         console.log(listOfProperties[i][5] + ": " + cosineValue);
 
-        listOfCosines.push([listOfProperties[i][5], cosineValue]);
+        listOfCosines.push([listOfProperties[i][5], cosineValue]);        
     }
 
     let sortedCosines = listOfCosines.sort((a, b) => a[1] - b[1]);
