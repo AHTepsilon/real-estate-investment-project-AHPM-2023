@@ -36,7 +36,7 @@ export default class Header extends Component {
             <div className='header-container'>
                 <div className='header-container-left-div'>
                     <div className='header-container-left-div-logo-div'>
-                        <Link to='/'><img src='/logo.png'></img></Link>
+                        <Link to='/'><img className='header-container-left-div-logo-div-img' src='/logo.png'></img></Link>
                     </div>
                     <div className='header-container-left-div-list-div'>
                         <ul className='header-container-left-div-list-div-ul'>
