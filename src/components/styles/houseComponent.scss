@@ -1,6 +1,15 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+
 .house-div{
-    background-color: gray;
+    background-color: $lightPurble;
     width: 20em;
+    border-radius: 10px;
+    border: $purble;
+    color: $purble;
+    border-width: 2px;
+    border-style: solid;
 
     display: flex;
     flex-direction: column;
@@ -9,8 +18,11 @@
 
     text-align: center;
 
+    margin: 2em;
+
     &-img{
         width: 20em;
+        height: 10em;
     }
     .house-div-info-lower{
         display: flex;
@@ -23,5 +35,9 @@
         &-address{
             margin: 0.5em 1em;
         }
+    }
+
+    &:hover{
+        background-color: darken($color: $lightPurble, $amount: 5);
     }
 }

@@ -8,6 +8,12 @@ import Login from './pages/login.jsx'
 import SignUp from './pages/signup.jsx'
 import Nivelation from './pages/nivelation.jsx'
 import PropertyShowcase from './pages/propertyShowcase.jsx'
+import Calculator from './pages/calculator.jsx'
+import Analyzer from './pages/analyzer.jsx'
+import Resources from './pages/resources.jsx'
+import HouseDetailComponent from './components/houseDetailComponent.jsx'
+import ResourceDetailComponent from './components/resourceDetailComponent.jsx'
+import User from './pages/user.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
@@ -18,6 +24,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/nivelation' element={<Nivelation />}></Route>
         <Route path='/showcase' element={<PropertyShowcase />}></Route> 
+        <Route path='/calculator' element={<Calculator />}></Route>
+        <Route path='/analyzer' element={<Analyzer />}></Route>
+        <Route path='/resources' element={<Resources />}></Route>
+        <Route path='/property/:id' element={<HouseDetailComponent/>}></Route>
+        <Route path='/resources/:id' element={<ResourceDetailComponent/>}></Route>
+        <Route path='/user' element={<User/>}></Route>
       </Routes>
     <Footer />
     </Router>

@@ -1,0 +1,59 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+
+
+.houseDetailComponent{
+
+    margin: 1em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    &-title{
+        color: $darkGreen;
+    }
+
+    &-img{
+        width: 20em;
+        height: 20em;
+        border: $darkGreen;
+        border-width: 1em;
+        border-style: solid;
+        border-radius: 15px;
+        }
+
+    &-pricediv{
+
+        display: flex;
+        flex-direction: row;
+        
+        &-pesos{
+            margin-right: 2em;
+            color: $purble;
+        }
+
+        &-altCurrency{
+            margin: 1em;
+            color: $darkGreen;
+        }
+    }
+
+    &-tag{
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        color: $darkGreen;
+    }
+
+    &-list{
+        background-color: $darkGreen;
+        color: #FFF;
+        padding: 1em 2em;
+        margin-top: 2em;
+        border-radius: 15px;
+        &-item{
+            list-style: circle;
+        }
+    }
+}

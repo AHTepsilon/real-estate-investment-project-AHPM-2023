@@ -1,0 +1,30 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+
+.propertyShowcase-section{
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-loadDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        color: $purble;
+        text-align: center;
+
+        &-loadIcon{
+            width: 10em;
+        }
+    
+        &-tag{
+    
+        }
+    }
+
+}

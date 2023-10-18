@@ -1,34 +1,99 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import getSimilarity from '../functions/recommendationSystem';
+import { setDoc, doc, getDoc, onSnapshot, collection, query, where, getDocs } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { db, auth } from '../firebase/firebase';
+import PropertyList from '../components/propertyList';
+import GetSimilarity from '../functions/recommendationSystem';
+import { property } from 'underscore';
+import './propertyShowcase.scss'
 
 export default class PropertyShowcase extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            dataToGet: { mensaje: 'Ejemplo', info: 'Ejemplo'}
+            dataToGet: { mensaje: 'Ejemplo', info: 'Ejemplo'},
+            id: '',
+            userPreferences: [],
+            listOfProperties: [],
+            loading: true,
         }
 
     }
 
-  getData = async(data) => {
-    try{
-        const response = await axios.get('http://localhost:8000/api/scraper');
-        console.log(response.data);
-    }
-    catch(err){
-        console.log('error', err)
-    }
+    
+  getProperties = async() => {
+    const q = query(collection(db, "properties"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      this.setState((prevState) => ({
+        listOfProperties: [...prevState.listOfProperties, doc.data()]
+      }));
+    });
   }
 
-  componentDidMount(){
-    this.getData(this.state.dataToSend);
+  getData = async() => {
+    this.getProperties();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+
+        const docRef = doc(db, "users", uid);
+        getDoc(docRef).then(docSnap => {
+          if (docSnap.exists()) {
+            let receivedPreferencesArr = 
+            [
+              docSnap.data().preference_age_level,
+              docSnap.data().preference_characteristics_level,
+              docSnap.data().preference_location_level,
+              docSnap.data().preference_meters_level,
+              docSnap.data().preference_services_level
+            ]
+            console.log(receivedPreferencesArr);
+
+            this.setState(prevState => ({
+              userPreferences: [...prevState.userPreferences, ...receivedPreferencesArr]
+            }));
+
+          } else {
+            console.log("No such document!");
+          }
+        })
+    }});
+  }
+
+  displayProperties(item){
+    
+  }
+
+  fillDisplaySection = () => {
+
+  }
+
+  componentDidUpdate(){
+    if(this.state.listOfProperties.length > 0){
+      setTimeout(() => {
+        this.setState({loading: false})
+      }, 3000);
+    }
+  }
+  
+  componentDidMount = async() => {
+    this.getData();
   }
 
   render() {
     return (
-      <section>
-        
+      <section className='propertyShowcase-section' id='propertyShowcase-section'>
+        {this.state.loading && 
+        <div className='propertyShowcase-section-loadDiv'>
+          <img className='propertyShowcase-section-loadDiv-loadIcon' src='loading-icon.svg'></img>
+          <h3  className='propertyShowcase-section-loadDiv-tag'>Cargando propiedades...</h3>
+        </div>}
+        <PropertyList data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
       </section>
     )
   }

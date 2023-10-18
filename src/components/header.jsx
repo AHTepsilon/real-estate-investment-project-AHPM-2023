@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { db } from '../firebase/firebase';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { setDoc, doc } from 'firebase/firestore';
 import './styles/header.scss';
 
 export default class Header extends Component {
@@ -9,7 +11,9 @@ export default class Header extends Component {
         super(props);
         this.state = {
             isLoggedIn: true,
+            popUpMenu: false,
         }
+        
     }
 
     async componentDidMount() {
@@ -23,12 +27,8 @@ export default class Header extends Component {
           });
     }
 
-    async signOut(){
-        signOut(auth).then(() => {
-        window.location.reload(true);
-        }).catch((error) => {
-        console.log(error);
-        });
+    handlePopOutMenu = () => {
+        this.setState({popUpMenu: !this.state.popUpMenu})
     }
 
     render(){
@@ -40,15 +40,15 @@ export default class Header extends Component {
                     </div>
                     <div className='header-container-left-div-list-div'>
                         <ul className='header-container-left-div-list-div-ul'>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Calculadora de inversión</a></li>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Administrador de inversiones</a></li>
-                            <li className='header-container-left-div-list-div-ul-li'><a href=''>Recursos y documentación</a></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/calculator'>Calculadora de inversión</Link></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/analyzer'>Analizador de inversiones</Link></li>
+                            <li className='header-container-left-div-list-div-ul-li'><Link to='/resources'>Recursos y documentación</Link></li>
                         </ul>
                     </div>
                 </div>
                 {this.state.isLoggedIn === true && <div className='header-container-right-div'>
                         <img className='header-container-right-div-notif-img' src='/notif.png'></img>
-                        <img onClick={this.signOut} className='header-container-right-div-user-img' src='/user.png'></img>
+                        <Link to='/user'><img className='header-container-right-div-user-img' src='/user.png'></img></Link>
                     </div>}
                 {this.state.isLoggedIn === false && <div className='header-container-right-div'>
                     <a href='' className='header-container-right-div-link'>Acceder</a>

@@ -56,6 +56,7 @@ export default class SignUp extends Component {
     await setDoc(doc(db, "users", this.state.uid), {
       email: email,
       hasCompletedProfile: false,
+      id: this.state.uid,
     });
 
     alert("Usuario creado con id " + this.state.uid);
