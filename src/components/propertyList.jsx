@@ -3,7 +3,7 @@ import HouseComponent from './houseComponent';
 import './styles/propertyList.scss';
 import { db, auth } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, updateDoc } from "firebase/firestore";
 
 export default class PropertyList extends Component {
     constructor(props){
@@ -48,13 +48,18 @@ export default class PropertyList extends Component {
             let inherentRiskLevel = 30 - (property.califAntiguedad + property.califUbicacion + property.califCapacidadFinanciera);
             console.log('risk', inherentRiskLevel);
 
+            updateDoc(doc(db, 'properties', property.id), {
+                inherentRiskLevel: inherentRiskLevel
+            });
+
             listOfProperties.push(window['prop_' + property.id] = 
                 [property.califAntiguedad,
                 property.califCaracteristicas,
                 property.califUbicacion,
                 property.califMetraje,
                 property.califServicios,
-                property.id]);
+                property.id,
+                property.inherentRiskLevel]);
         });
     
         let dataset1 = props.data;

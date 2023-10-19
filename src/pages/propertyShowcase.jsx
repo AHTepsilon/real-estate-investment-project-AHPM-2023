@@ -52,7 +52,8 @@ export default class PropertyShowcase extends Component {
               docSnap.data().preference_characteristics_level,
               docSnap.data().preference_location_level,
               docSnap.data().preference_meters_level,
-              docSnap.data().preference_services_level
+              docSnap.data().preference_services_level,
+              docSnap.data().investmentLevel,
             ]
             console.log(receivedPreferencesArr);
 
