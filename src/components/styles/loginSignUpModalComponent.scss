@@ -1,9 +1,26 @@
 $lightBlue: #2291A9;
 
+.Modal-overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 .LoginSignUpModalComponent-div{
     display: flex;
     flex-direction: column;
     width: 30em;
+
+    background-color: white;
+    padding: 3em;
+    border-radius: 10px;
+    line-height: 32px;
     &-upper{
         display: flex;
         flex-direction: row;
@@ -41,12 +58,24 @@ $lightBlue: #2291A9;
             border-style: solid;
             background-color: white;
             border-width: 1px;
+
+            &:hover{
+                cursor: pointer;
+                background-color:$lightBlue;
+                color: white;
+            }
         }
         &-signup{
             @include modalButtons();
             background-color:$lightBlue;
             border-style: none;
             color: white;
+
+            &:hover{
+                cursor: pointer;
+                background-color:white;
+                color: $lightBlue;
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ function App() {
     <>
       {isLoggedIn === false &&<section className='section'>
         <button onClick={() => {setShowModal(true)}} className='section-button'>Ver propiedades</button>
-        {showModal === false && <LoginSignUpModalComponent>
+        {showModal === true && <LoginSignUpModalComponent>
           </LoginSignUpModalComponent>}
       </section>}
       {isLoggedIn === true &&<section className='section'>
