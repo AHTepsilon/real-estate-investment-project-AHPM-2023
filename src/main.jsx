@@ -31,6 +31,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/resources/:id' element={<ResourceDetailComponent/>}></Route>
         <Route path='/user' element={<User/>}></Route>
       </Routes>
-    <Footer />
     </Router>
 )

@@ -1,9 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 $darkGreen: #2D5F65;
+$letterGray: #676767;
 $backgroundGray: #F9F9F9;
+$orange: #F5921D;
 
 body{
     margin: 0;
     background-color: $backgroundGray;
+    font-family: 'Inter', sans-serif;
+}
+
+.landing-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &-left{
+        width: 100%;
+        &-info{
+            padding: 10em 25em 0 0;
+            margin-left: 5em;
+            &-title{
+                font-size: 45px;
+                margin-bottom: 1em;
+                color: $letterGray;
+                width: 13em;
+            }
+            &-text{
+                width: 20em;
+                color: $letterGray;
+                font-size: 18px;
+            }
+        }
+        &-div{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 5em 0;
+            margin-left: 5em;
+
+            &-button{
+                background-color: $orange;
+                text-decoration: none;
+        
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: none;
+        
+                color: #ffffff;
+        
+                width: 40em;
+                height: 3em;
+                border-radius: 10px;
+        
+                &:hover{
+                    background-color: darken($color: $orange, $amount: 4);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    &-right{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        right: 0;
+        &-img{
+            height: 100%;
+        }
+    }
 }
 
 .section{
@@ -19,26 +89,5 @@ body{
 
         color: $darkGreen;
         margin-bottom: 2em;
-    }
-
-    &-button{
-        background-color: $darkGreen;
-        text-decoration: none;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: #ffffff;
-        margin: 0.5em;
-
-        width: 20em;
-        height: 3em;
-        border-radius: 19px;
-
-        &:hover{
-            background-color: darken($color: $darkGreen, $amount: 4);
-            cursor: pointer;
-        }
     }
 }

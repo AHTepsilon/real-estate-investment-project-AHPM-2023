@@ -7,6 +7,7 @@ import { db, auth } from '../firebase/firebase';
 import PropertyList from '../components/propertyList';
 import GetSimilarity from '../functions/recommendationSystem';
 import { property } from 'underscore';
+import { redirectIfProfileUncomplete } from '../functions/redirectIfProfileUncomplete'
 import './propertyShowcase.scss'
 
 export default class PropertyShowcase extends Component {
@@ -40,6 +41,7 @@ export default class PropertyShowcase extends Component {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
+        this.setState({id: uid});
 
         const docRef = doc(db, "users", uid);
         getDoc(docRef).then(docSnap => {
@@ -62,6 +64,9 @@ export default class PropertyShowcase extends Component {
             console.log("No such document!");
           }
         })
+    } else{
+      alert('Necesitas iniciar sesión para usar nuestros servicios de búsqueda de inmuebles');
+      window.location.href = '/signup';
     }});
   }
 

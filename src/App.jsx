@@ -38,16 +38,25 @@ function App() {
   }, [userId]);
 
   return (
-    <>
-      {isLoggedIn === false &&<section className='section'>
-        <button onClick={() => {setShowModal(true)}} className='section-button'>Ver propiedades</button>
-        {showModal === true && <LoginSignUpModalComponent>
-          </LoginSignUpModalComponent>}
-      </section>}
-      {isLoggedIn === true &&<section className='section'>
-        <Link to='/showcase' className='section-button'>Ver propiedades</Link>
-      </section>}
-    </>
+    <section className='landing-section'>
+      <div className='landing-section-left'>
+        <div className='landing-section-left-info'>
+          <h2 className='landing-section-left-info-title'>Diversifica tu portafolio financiero invirtiendo en bienes raíces</h2>
+          <p className='landing-section-left-info-text'>Busca, encuentra, compara, analiza y haz tu primera inversión con todas las herramientas al alcance de tu mano.</p>
+        </div>
+        {isLoggedIn === false &&<div className='landing-section-left-div'>
+          <button className='landing-section-left-div-button' onClick={() => {setShowModal(true)}}>Busca tu primer inmueble</button>
+          {showModal === true && <LoginSignUpModalComponent>
+            </LoginSignUpModalComponent>}
+        </div>}
+        {isLoggedIn === true &&<div className='landing-section-left-div'>
+          <Link to='/showcase' className='landing-section-left-div-button'>Busca tu primer inmueble</Link>
+        </div>}
+      </div>
+      <div className='landing-section-right'>
+        <img className='landing-section-right-img' src="/landingImage.png" alt="" />
+      </div>
+    </section>
   )
 }
 
