@@ -8,33 +8,41 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore"
 import { id } from "./functions/redirectLoggedUser"
 import { redirectIfProfileUncomplete } from './functions/redirectIfProfileUncomplete'
+import LoginSignUpModalComponent from './components/loginSignUpModalComponent'
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState("");
   const [hasProfiled, setHasProfiled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setUserId(uid);
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      setUserId(uid);
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-  redirectIfProfileUncomplete(userId);
-
-  console.log(isLoggedIn);
+  useEffect(() => {
+    redirectIfProfileUncomplete(userId);
+  }, [userId]);
 
   return (
     <>
       {isLoggedIn === false &&<section className='section'>
-         <h2 className='section-title'>Es necesario iniciar sesión o crear una cuenta para usar nuestros servicios</h2>
-        <Link to='/login' className='section-button'>Iniciar Sesión</Link>
-        <Link to='/signup' className='section-button'>Crear una Cuenta</Link>
+        <button onClick={() => {setShowModal(true)}} className='section-button'>Ver propiedades</button>
+        {showModal === false && <LoginSignUpModalComponent>
+          </LoginSignUpModalComponent>}
       </section>}
       {isLoggedIn === true &&<section className='section'>
         <Link to='/showcase' className='section-button'>Ver propiedades</Link>
