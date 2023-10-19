@@ -44,7 +44,10 @@ export default class PropertyList extends Component {
         let listOfCosines = [];
         
         Object.values(props.propertyData).forEach((property) => {
-    
+
+            let inherentRiskLevel = 30 - (property.califAntiguedad + property.califUbicacion + property.califCapacidadFinanciera);
+            console.log('risk', inherentRiskLevel);
+
             listOfProperties.push(window['prop_' + property.id] = 
                 [property.califAntiguedad,
                 property.califCaracteristicas,
