@@ -1,0 +1,52 @@
+$lightBlue: #2291A9;
+
+.LoginSignUpModalComponent-div{
+    display: flex;
+    flex-direction: column;
+    width: 30em;
+    &-upper{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        &-left{
+            margin: 0 1em;
+        }
+        &-right{
+            &-title{
+                margin-top: 0;
+            }
+            &-info{
+
+            }
+        }
+    }
+
+
+    &-lower{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        @mixin modalButtons(){
+            border-radius: 6px;
+            width: 10em;
+            height: 2.5em;
+            margin: 1em;
+        }
+
+        &-login{
+            @include modalButtons();
+            border-color: $lightBlue;
+            border-style: solid;
+            background-color: white;
+            border-width: 1px;
+        }
+        &-signup{
+            @include modalButtons();
+            background-color:$lightBlue;
+            border-style: none;
+            color: white;
+        }
+    }
+}
