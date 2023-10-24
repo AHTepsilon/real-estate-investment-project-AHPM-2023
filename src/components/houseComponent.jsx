@@ -3,6 +3,7 @@ import './styles/houseComponent.scss'
 import { db } from '../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link, useParams } from 'react-router-dom';
+import HeatmapComponent from './heatmapComponent';
 
   function HouseComponent({elementId}){
     const [data, setData] = useState({});
@@ -35,7 +36,10 @@ import { Link, useParams } from 'react-router-dom';
               <h2 className='house-div-info-price'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h2>
               <h3 className='house-div-info-neighborhood'>{data.ubicacionBarrio}</h3>
               <div className='house-div-info-lower'>
-                  <p className='house-div-info-lower-commune'>{Math.floor(localStorage.getItem(elementId) * 100)}% de afinidad con tu perfil</p>
+                <div className='house-div-info-lower-affinity'>
+                  <p className='house-div-info-lower-affinity-percentage'>{Math.floor(localStorage.getItem(elementId) * 100)}% de afinidad con tu perfil</p>
+                  <HeatmapComponent elementId={elementId}/>
+                </div>
                   <p className='house-div-info-lower-address'>Dirección</p>
               </div>
           </div>

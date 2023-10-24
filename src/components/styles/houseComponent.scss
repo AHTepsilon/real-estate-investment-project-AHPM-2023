@@ -29,8 +29,10 @@ $lightPurble: #EEE8FE;
         flex-direction: row;
         margin-top: 4em;
 
-        &-commune{
+        &-affinity{
             margin: 0.5em 1em;
+            display: flex;
+            flex-direction: column;
         }
         &-address{
             margin: 0.5em 1em;

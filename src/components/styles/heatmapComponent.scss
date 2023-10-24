@@ -1,0 +1,19 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+
+.heatmapComponent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+
+    &-item{
+        width: 2em;
+        height: 1em;
+        margin: 0.2em;
+        border-radius: 0.5em;
+    }
+    
+}
