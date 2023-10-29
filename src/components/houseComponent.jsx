@@ -33,14 +33,20 @@ import HeatmapComponent from './heatmapComponent';
         <div className='house-div'>
           <img className='house-div-img' src={data.imgurl}></img>
           <div className='house-div-info'>
-              <h2 className='house-div-info-price'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h2>
-              <h3 className='house-div-info-neighborhood'>{data.ubicacionBarrio}</h3>
+              <div className='house-div-info-upper'>
+                <h2 className='house-div-info-price'>{(data.precio).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</h2>
+              </div>
               <div className='house-div-info-lower'>
+                <div className='house-div-info-lower-aspects'>
+                <p className='house-div-info-lower-aspects-tag'>{data.metrajeM2}m²</p>
+                <p className='house-div-info-lower-aspects-tag'>{data.habitaciones} ha.</p>
+                <p className='house-div-info-lower-aspects-tag'>{data.banos} ba.</p>
+                <p className='house-div-info-lower-aspects-tag'>{data.parqueadero} pa.</p>
+                </div>
                 <div className='house-div-info-lower-affinity'>
                   <p className='house-div-info-lower-affinity-percentage'>{Math.floor(localStorage.getItem(elementId) * 100)}% de afinidad con tu perfil</p>
-                  <HeatmapComponent elementId={elementId}/>
                 </div>
-                  <p className='house-div-info-lower-address'>Dirección</p>
+                  <p className='house-div-info-lower-address'>{data.ubicacionBarrio}</p>
               </div>
           </div>
         </div>

@@ -92,15 +92,90 @@ export default class PropertyShowcase extends Component {
   }
 
   render() {
-    return (
-      <section className='propertyShowcase-section' id='propertyShowcase-section'>
-        {this.state.loading && 
-        <div className='propertyShowcase-section-loadDiv'>
-          <img className='propertyShowcase-section-loadDiv-loadIcon' src='loading-icon.svg'></img>
-          <h3  className='propertyShowcase-section-loadDiv-tag'>Cargando propiedades...</h3>
-        </div>}
-        <PropertyList data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
-      </section>
+    return (<div className='ps-general'>
+      <div className='ps-filters'>
+        <div className='ps-filters-area'>
+        </div>
+      </div>
+      <div className='propertyShowcase'>
+        <section className='propertyShowcase-filtersSection'>
+          <div className='propertyShowcase-filtersSection-area'>
+            <div className='propertyShowcase-filtersSection-area-div-1'>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Precio</h3>
+              <div className='propertyShowcase-filtersSection-area-div-1-1'>
+                <div className='propertyShowcase-filtersSection-area-div-1-1-textInputs'>
+                  <div className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner'>
+                    <p className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner-text'>Desde</p>
+                    <input type="text" className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner-input'/>
+                  </div>
+                  <div className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner'>
+                    <p className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner-text'>Hasta</p>
+                    <input type="text" className='propertyShowcase-filtersSection-area-div-1-1-textInputs-inner-input'/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='propertyShowcase-filtersSection-area-div-1'>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Estrato</h3>
+              <div className='propertyShowcase-filtersSection-area-div-1-1'>
+                <div className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs'>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Todos</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>1</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>2</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>3</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>4</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>5</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>6</button>
+                </div>
+              </div>
+            </div>
+            <div className='propertyShowcase-filtersSection-area-div-1'>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Antigüedad del inmueble (en años)</h3>
+              <div className='propertyShowcase-filtersSection-area-div-1-1'>
+                <div className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs'>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Entre 0 y 5</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Entre 6 y 10</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Entre 11 y 15</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Más de 16 años</button>
+                </div>
+              </div>
+            </div>
+            <div className='propertyShowcase-filtersSection-area-div-1'>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Cantidad de habitaciones</h3>
+              <div className='propertyShowcase-filtersSection-area-div-1-1'>
+                <div className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs'>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>1</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>2</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>3</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>4</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>5</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>6+</button>
+                </div>
+              </div>
+            </div>
+            <div className='propertyShowcase-filtersSection-area-div-1'>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Parqueaderos</h3>
+              <div className='propertyShowcase-filtersSection-area-div-1-1'>
+                <div className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs'>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>No tiene</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>1</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>2</button>
+                  <button className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>3+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='propertyShowcase-section' id='propertyShowcase-section'>
+          {this.state.loading && 
+          <div className='propertyShowcase-section-loadDiv'>
+            <img className='propertyShowcase-section-loadDiv-loadIcon' src='loading-icon.svg'></img>
+            <h3  className='propertyShowcase-section-loadDiv-tag'>Cargando propiedades...</h3>
+          </div>}
+          <PropertyList data={this.state.userPreferences} propertyData={this.state.listOfProperties}/>
+        </section>
+      </div>
+      </div>
     )
   }
 }
