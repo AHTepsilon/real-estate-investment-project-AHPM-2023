@@ -52,6 +52,10 @@ $lightBlue: #F2F6FD;
         border: 1px solid #E2E2E2;
         box-shadow: 0px 3.22086px 16px 0px rgba(24, 54, 71, 0.10);
 
+        &-button{
+            margin-top: 3em;
+        }
+
         &-div-1{
             display: flex;
             flex-direction: column;
