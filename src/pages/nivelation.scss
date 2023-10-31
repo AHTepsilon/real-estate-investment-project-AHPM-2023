@@ -40,5 +40,52 @@ $letterGray: #696969;
     &-title{
         color: $darkGreen;
     }
+
+    &-divSlider{
+
+        display: flex;
+        flex-direction: row;
+        margin-top: 3em;
+
+        &-tag{
+            margin: 0 2em;
+            word-wrap: break-word;
+        }
+
+        &-slider{
+            appearance: none;
+            background-color: #2D5F65;
+            width: 30em;
+            height: 1em;
+            border-radius: 1em;
+    
+            @mixin sliderThumb(){
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                background: #F5921D;
+                border-radius: 10em;
+                cursor: pointer;
+    
+                &:hover{
+                    background-color: darken($color: #F5921D, $amount: 5);
+                }
+    
+                &:active{
+                    border: 2px solid #FFFFFF;
+                }
+            }
+            
+            &::-webkit-slider-thumb {
+                @include sliderThumb();
+              }
+    
+              &::-moz-slider-thumb {
+                @include sliderThumb();
+              }
+        }
+    }
 }
 

@@ -51,7 +51,7 @@ export default class Header extends Component {
                         <Link to='/user'><img className='header-container-right-div-user-img' src='/user.png'></img></Link>
                     </div>}
                 {this.state.isLoggedIn === false && <div className='header-container-right-div'>
-                    <a href='' className='header-container-right-div-link'>Ingresar</a>
+                    <Link to='/signup' className='header-container-right-div-link'>Ingresar</Link>
                 </div>}
             </div>
         </header>

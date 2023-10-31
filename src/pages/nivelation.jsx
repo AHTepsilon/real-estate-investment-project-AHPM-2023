@@ -164,63 +164,43 @@ class Nivelation extends Component {
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Qué tan importante consideras que es la ubicación del inmueble a la hora de invertir en el mercado de bienes raíces? (1 siendo menos importante y 7 siendo más importante)</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='1' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='2' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='3' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='4' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='5' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='6' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='location_radio' value='7' onClick={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                    <h3 className='question-box-title'>¿Qué tan importante consideras que es la ubicación del inmueble a la hora de invertir en el mercado de bienes raíces?</h3>
+                    <div className='question-box-divSlider'>
+                        <p className='question-box-divSlider-tag'>Menos importante</p>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_location_level: parseInt(e.target.value)})}}/>
+                        <p className='question-box-divSlider-tag'>Más importante</p>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Qué tan antiguo prefieres que sea el inmueble en que inviertes? (1 siendo más antiguos y 7 siendo más nuevos)</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='1' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='2' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='3' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='4' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='5' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='6' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='age_radio' value='7' onClick={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                    <h3 className='question-box-title'>¿Qué tan antiguo prefieres que sea el inmueble en que inviertes?</h3>
+                    <div className='question-box-divSlider'>
+                        <p className='question-box-divSlider-tag'>Más antiguos</p>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_age_level: parseInt(e.target.value)})}}/>
+                        <p className='question-box-divSlider-tag'>Más nuevos</p>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Qué metraje prefieres que tenga el inmueble en que quieres inviertir? (1 siendo más pequeños y 7 siendo más grandes)</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='1' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='2' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='3' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='4' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='5' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='6' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='meters_radio' value='7' onClick={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                    <h3 className='question-box-title'>¿Qué metraje prefieres que tenga el inmueble en que quieres inviertir?</h3>
+                    <div className='question-box-divSlider'>
+                        <p className='question-box-divSlider-tag'>Más pequeños</p>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_meters_level: parseInt(e.target.value)})}}/>
+                        <p className='question-box-divSlider-tag'>Más grandes</p>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Qué tan importante consideras que son los servicios del inmueble la hora de invertir en el mercado de bienes raíces? (1 siendo menos importante y 7 siendo más importante)</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='1' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='2' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='3' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='4' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='5' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='6' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='services_radio' value='7' onClick={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                    <h3 className='question-box-title'>¿Qué tan importante consideras que son los servicios del inmueble la hora de invertir en el mercado de bienes raíces?</h3>
+                    <div className='question-box-divSlider'>
+                        <p className='question-box-divSlider-tag'>Menos importante</p>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_services_level: parseInt(e.target.value)})}}/>
+                        <p className='question-box-divSlider-tag'>Más importante</p>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Qué tan importante consideras que son las características (habitaciones, parqueaderos, baños, etc) del inmueble la hora de invertir en el mercado de bienes raíces? (1 siendo menos importante y 7 siendo más importante)</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='1' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>1</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='2' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>2</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='3' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>3</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='4' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>4</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='5' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>5</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='6' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>6</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='characteristics_radio' value='7' onClick={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/><p className='question-box-p'>7</p></div>
+                    <h3 className='question-box-title'>¿Qué tan importante consideras que son las características (habitaciones, parqueaderos, baños, etc) del inmueble la hora de invertir en el mercado de bienes raíces?</h3>
+                    <div className='question-box-divSlider'>
+                        <p className='question-box-divSlider-tag'>Menos importante</p>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/>
+                        <p className='question-box-divSlider-tag'>Más importante</p>
                     </div>
                 </div>
             </div>
