@@ -67,7 +67,7 @@ class Nivelation extends Component {
         preference_characteristics_level: this.state.preference_characteristics_level,
         hasCompletedProfile: true,
 
-      }).then(() => {window.location.href = '/'}); 
+      }).then(() => {window.location.href = '/'});
   }
 
   toggleCheck = (e) => {
@@ -93,24 +93,24 @@ class Nivelation extends Component {
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>Selecciona tu rango de edad</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='1' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>20-30 años</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='3' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>30-50 años</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='2' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>Más de 50 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='0' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>20-30 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='2' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>30-50 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='1' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>Más de 50 años</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Has invertido en el mercado de bienes raíces anteriormente?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='2' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>Sí</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='1' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>No</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='4' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>Sí</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='-1' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>No</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Qué tan arriesgado consideras que eres en temas financieros?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='3' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Arriesgado</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='5' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Arriesgado</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='2' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Poco arriesgado</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='1' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Nada arriesgado</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='0' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Nada arriesgado</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
@@ -126,17 +126,17 @@ class Nivelation extends Component {
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Cuál es tu nivel de conocimiento sobre el mercado de bienes raíces?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='1' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='2' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='3' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='-1' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='3' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='5' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Cuál es tu nivel de conocimiento en inversiones?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='1' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='2' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='3' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='-1' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='3' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='5' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
