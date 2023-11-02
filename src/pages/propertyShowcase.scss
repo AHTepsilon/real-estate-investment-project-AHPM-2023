@@ -54,6 +54,18 @@ $lightBlue: #F2F6FD;
 
         &-button{
             margin-top: 3em;
+            background-color: $darkGreen;
+            color: white;
+            border: none;
+            width: auto;
+            height: 2em;
+            border-radius: 6px;
+
+            &:hover{
+                cursor: pointer;
+                background-color: darken($color: $darkGreen, $amount: 5);
+            }
+
         }
 
         &-div-1{

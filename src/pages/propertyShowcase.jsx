@@ -184,6 +184,13 @@ export default class PropertyShowcase extends Component {
                 </div>
               </div>
             </div>
+            <div>
+              <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Filtros seleccionados</h3>
+              <p>Estrato: {this.state.stractFilter}</p>
+              <p>Antigüedad: {this.state.ageFilter}</p>
+              <p>{this.state.roomFilter} Habitaciones</p>
+              <p>{this.state.parkingFilter} Parqueaderos</p>
+             </div>
             <button onClick={this.clearArray} className='propertyShowcase-filtersSection-area-button'>Aplicar filtros</button>
           </div>
         </section>
