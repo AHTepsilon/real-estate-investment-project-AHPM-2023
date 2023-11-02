@@ -70,6 +70,7 @@ body{
         flex-direction: row;
         align-items: flex-end;
         right: 0;
+        overflow: hidden;
         &-img{
             height: 100%;
         }
