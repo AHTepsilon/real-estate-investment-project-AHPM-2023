@@ -66,23 +66,10 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <>
+      <div className='signup'>
       <section className='signup-section'>
+        <h2 className='signup-section-title'>Crea tu cuenta</h2>
         <div className = 'signup-section-div'>
-         {/* <div className = 'signup-section-div-left'>
-            <div className = 'signup-section-div-left-name'>
-              <p className='signup-section-div-left-name-label'>Nombre</p>
-              <input className='signup-section-div-left-name-input' type='text' onChange={(e) => {this.setState({name: e.target.value} )}}></input>
-            </div>
-            <div className = 'signup-section-div-left-lname'>
-              <p className='signup-section-div-left-lname-label'>Apellidos</p>
-              <input className='signup-section-div-left-lname-input' type='text' onChange={(e) => {this.setState({lname: e.target.value})}}></input>          
-            </div>
-            <div className = 'signup-section-div-left-username'>
-              <p className='signup-section-div-left-lname-label'>Nombre de usuario</p>
-              <input className='signup-section-div-left-username-input' type='text' onChange={(e) => {this.setState({username: e.target.value})}}></input>
-            </div>
-        </div>*/}
           <div className = 'signup-section-div-right'>
             <div className = 'signup-section-div-right-email'>
               <p className='signup-section-div-right-email-label'>Correo electrónico</p>
@@ -103,7 +90,10 @@ export default class SignUp extends Component {
             <button className='signup-section-lower-button' onClick={this.createUser}>Crear cuenta</button>
         </div>
       </section>
-      </>
+      <section className='img-section'>
+        <img src="/keys2.png" alt="" />
+      </section>
+      </div>
     ) 
   }
 }

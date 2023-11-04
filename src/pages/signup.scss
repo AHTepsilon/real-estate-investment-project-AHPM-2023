@@ -18,17 +18,30 @@ $gray: #D9D9D9;
     
     &-input{
         margin-top: 1em;
-        border: none;
         background-color: $gray;
+        border-radius: 25px;
+        border: 1px solid #CDCFD0;
+
+        background: #F7F7F7;
 
         height: 3em;
     }
 }
 
 .signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
     &-section{
         @include flexSet();
-        margin: 10em 0;
+        margin: 10em 3em;
+
+        &-title{
+            display: flex;
+            justify-self: flex-start;
+            text-align: left;
+        }
 
         &-div{
             display: flex;
@@ -80,7 +93,7 @@ $gray: #D9D9D9;
             }
 
             &-button{
-                background-color: $darkGreen;
+                background: var(--azul-claro-plataforma-azul-claro-plataforma, #23B8C9);
                 text-decoration: none;
         
                 display: flex;

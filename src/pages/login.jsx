@@ -35,8 +35,9 @@ export default class Login extends Component {
 
   render() {
     return (
-      <>
+      <div className='login'>
       <section className = 'login-section'>
+        <h2 className = 'login-section-title'>Inicia sesión</h2>
         <div className = 'login-section-div'>
             <div className='login-section-div-username'>
                 <p className='login-section-div-username-label'>Nombre de usuario</p>
@@ -52,7 +53,10 @@ export default class Login extends Component {
             <button className='login-section-lower-button' onClick = {() => {this.userLogIn(this.state.email, this.state.pass)}}>Iniciar sesión</button>
         </div>
       </section>
-      </>
+      <section className = 'img-section'>
+      <img src="/keys.png" className='img-section-img' alt="" />
+      </section>
+      </div>
     )
   }
 }
