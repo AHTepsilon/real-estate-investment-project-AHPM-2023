@@ -46,6 +46,10 @@ $gray: #D9D9D9;
             &-pass{
                 @include inputArea();
             }
+
+            &-errorMessage{
+                color: #f00
+            }
         }
         &-lower{
             @include flexSet();

@@ -13,6 +13,7 @@ export default class Login extends Component {
           isLoggedIn: "",
           email: "",
           pass: "",
+          error: false,
         }
     }
 
@@ -30,6 +31,7 @@ export default class Login extends Component {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      this.setState({error: true});
     });
   }
 
@@ -47,6 +49,7 @@ export default class Login extends Component {
                 <p className='login-section-div-pass-label'>Contraseña</p>
                 <input className='login-section-div-pass-input' type='password' onChange={(e) => {this.setState({pass: e.target.value})}}></input>
             </div>
+            {this.state.error && <p className='login-section-div-errorMessage'>Usuario o contraseña incorrectos, por favor intenta otra vez</p>}
         </div>
         <div className='login-section-lower'>
             <Link className='login-section-lower-link' to='/signup'>¿No tienes una cuenta? Regístrate aquí</Link>

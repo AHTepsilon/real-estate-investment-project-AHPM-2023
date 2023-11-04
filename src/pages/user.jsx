@@ -47,7 +47,7 @@ const User = () => {
       const fetchData = async () => {
         const result = await getData();
         console.log(result);
-        setUserData(result); // Almacena el resultado en el estado
+        setUserData(result);
       };
       fetchData();
     }, []);
