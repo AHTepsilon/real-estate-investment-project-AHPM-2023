@@ -6,7 +6,7 @@ export class Analyzer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          analysisClicked: false,
+          analysisClicked: true,
           data: {propertyValue: 0, propertyExtraCosts: 0, downPayment: 0},
           maxRentValue: '',
           minRentValue: '',
@@ -17,27 +17,27 @@ export class Analyzer extends Component {
           maxTimeForInvestmentReturn: '',
           minTimeForInvestmentReturn: '',
           communeAvgPrice: {
-            '1': 0,
+            '1': 2300000,
             '2': 3160000,
             '3': 2905000,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0,
-            '10': 0,
-            '11': 0,
-            '12': 0,
-            '13': 0,
-            '14': 0,
-            '15': 0,
-            '16': 0,
+            '4': 2890000,
+            '5': 2690000,
+            '6': 2450000,
+            '7': 2300000,
+            '8': 2560000,
+            '9': 2650000,
+            '10': 3170000,
+            '11': 2430000,
+            '12': 2160000,
+            '13': 1650000,
+            '14': 1320000,
+            '15': 1420000,
+            '16': 1856000,
             '17': 3363000,
-            '18': 0,
+            '18': 2360000,
             '19': 3166000,
-            '20': 0,
-            '21': 0,
+            '20': 1280000,
+            '21': 1469000,
             '22': 4327000,
           },
           stratumAvgPrice: {
@@ -233,7 +233,7 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
-              <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
             </div>
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
@@ -276,49 +276,63 @@ export class Analyzer extends Component {
         <section className='right-analyzer-section'>
           {this.state.analysisClicked === true && 
           <div className='right-analyzer-section-container'>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Rango de valor de alquiler: 
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minRentValue} - {this.state.maxRentValue}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 A 12 meses puedes obtener un retorno de entre
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minEarningsAfterYear} y {this.state.maxEarningsAfterYear}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Años para obtener un retorno completo de la inversión
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 Entre {this.state.minTimeForInvestmentReturn} y {this.state.maxTimeForInvestmentReturn} años
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Valor por medio cuadrado de esta propiedad
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.pricePerM2}
               </h4>
+            </div>      
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Promedio de valor por m² (según el estrato)
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Pago total del préstamo
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.totalLoanPayment}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Pago mensual del préstamo
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.monthlyPayment}
               </h4>
-            </div>}
+            </div>
+          </div>}
         </section>
       </section>
     )

@@ -84,7 +84,15 @@ function HouseDetailComponent() {
                     <div className='houseDetailComponent-analysis-lower-inner'>
                         <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de préstamo</h3>
                         <p className='houseDetailComponent-analysis-lower-inner-value'>{((data.precio * interestRate)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
-                        <input type='range' min={12} max={20} onChange={(e) => {setInterestRate(e.target.value)}} className='analyzer-section-inner-div-secondary-input'></input>
+                        <input type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {setInterestRate(e.target.value)}} className='houseDetailComponent-analysis-lower-inner-slider'></input>
+                        <datalist id="interestPercentages">
+                            <option value={20}></option>
+                            <option value={30}></option>
+                            <option value={40}></option>
+                            <option value={50}></option>
+                            <option value={60}></option>
+                            <option value={70}></option>
+                        </datalist>
                         <p className='houseDetailComponent-analysis-lower-inner-value'>{interestRate}%</p>
                     </div>
                 </div>
