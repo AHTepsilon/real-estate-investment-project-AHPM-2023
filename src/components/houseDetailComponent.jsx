@@ -10,9 +10,53 @@ function showAnalysis(){
     window.location.href = '#houseDetailComponent-analysis';
 }
 
+function CalculateAvg({list, data}){
+    const selectedAvgPrice = list[data]
+
+    if(selectedAvgPrice !== undefined){
+        return <p className='houseDetailComponent-analysis-lower-inner-value'>{selectedAvgPrice.toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>;
+    }
+    else{
+        return <p>error</p>
+    }
+}
+
 function HouseDetailComponent() {
     const [data, setData] = useState({});
-    const [interestRate, setInterestRate] = useState(1);
+    const [communeAvgPrice, setCommuneAvgPrice] = useState({
+    '1': 2300000,
+    '2': 3160000,
+    '3': 2905000,
+    '4': 2890000,
+    '5': 2690000,
+    '6': 2450000,
+    '7': 2300000,
+    '8': 2560000,
+    '9': 2650000,
+    '10': 3170000,
+    '11': 2430000,
+    '12': 2160000,
+    '13': 1650000,
+    '14': 1320000,
+    '15': 1420000,
+    '16': 1856000,
+    '17': 3363000,
+    '18': 2360000,
+    '19': 3166000,
+    '20': 1280000,
+    '21': 1469000,
+    '22': 4327000,});
+
+    const [stratumAvgPrice, setStratumAvgPrice] = useState({
+    '1': 1850000,
+    '2': 1916000,
+    '3': 2167000,
+    '4': 2850000,
+    '5': 3374000,
+    '6': 4355000,
+    });
+    
+    const [interestRate, setInterestRate] = useState(50);
     const { id } = useParams();
 
     useEffect(() => {
@@ -51,6 +95,8 @@ function HouseDetailComponent() {
                             <p className='houseDetailComponent-tag'>{data.metrajeM2}m²</p>
                             <p className='houseDetailComponent-tag'>Estado: {data.label}</p>
                             <p className='houseDetailComponent-tag'>Antiguedad: Entre {data.antiguedad} y {data.antiguedadFinal} años</p>
+                            <p className='houseDetailComponent-tag'>Comuna: {data.comuna}</p>
+                            <p className='houseDetailComponent-tag'>Estrato: {data.estrato}</p>
                         </div>
                         <div className='houseDetailComponent-details-right'>
                             <h2 className='houseDetailComponent-details-title'>Servicios</h2>
@@ -94,6 +140,14 @@ function HouseDetailComponent() {
                             <option value={70}></option>
                         </datalist>
                         <p className='houseDetailComponent-analysis-lower-inner-value'>{interestRate}%</p>
+                    </div>
+                    <div className='houseDetailComponent-analysis-lower-inner'>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio por m² del estrato</h3>
+                        <CalculateAvg list={communeAvgPrice} data={data.comuna}/>
+                    </div>
+                    <div className='houseDetailComponent-analysis-lower-inner'>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio por m² de la comuna</h3>
+                        <CalculateAvg list={stratumAvgPrice} data={data.estrato}/>
                     </div>
                 </div>
             </div>

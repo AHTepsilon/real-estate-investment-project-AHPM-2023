@@ -55,10 +55,13 @@ html {
     &-lower{
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        width: 80em;
+        align-items: center;
+        justify-content: center;
         &-inner{
             display: flex;
             flex-direction: column;
-            flex-wrap: wrap;
             margin: 2em;
             &-title{
 
