@@ -49,6 +49,7 @@ export class Analyzer extends Component {
             'six': 4355000,
           },
           selectedStratumPrice: 0,
+          selectedCommunePrice: 0,
           pricePerM2: 0,
           totalLoanPayment: 0,
           monthlyPayment: 0,
@@ -86,25 +87,35 @@ export class Analyzer extends Component {
     this.setState({minTimeForInvestmentReturn: minTimeReturn});
     this.setState({maxTimeForInvestmentReturn: maxTimeReturn});
 
-    switch(this.state.data.stratum){
-      case '1':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.one).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '2':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.two).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '3':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.three).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '4':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.four).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '5':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.five).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '6':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.six).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
+    const stratumPriceMap = {
+      '1': this.state.stratumAvgPrice.one,
+      '2': this.state.stratumAvgPrice.two,
+      '3': this.state.stratumAvgPrice.three,
+      '4': this.state.stratumAvgPrice.four,
+      '5': this.state.stratumAvgPrice.five,
+      '6': this.state.stratumAvgPrice.six,
+    };
+
+    const selectedStratumPrice = stratumPriceMap[this.state.data.stratum];
+
+    if (selectedStratumPrice !== undefined) {
+      this.setState({
+        selectedStratumPrice: selectedStratumPrice.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'COP',
+        }),
+      });
+    }
+
+    const selectedCommunePrice = this.state.communeAvgPrice[this.state.data.commune]
+
+    if (selectedCommunePrice !== undefined) {
+      this.setState({
+        selectedCommunePrice: selectedCommunePrice.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'COP',
+        }),
+      });
     }
 
     let loanPayment = ((((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100))
@@ -268,7 +279,7 @@ export class Analyzer extends Component {
             </div>
             </div>
               }
-            <button onClick={this.performAnalysis}>
+            <button onClick={this.performAnalysis} className='analyzer-section-inner-div-btn'>
               Analizar
             </button>
           </div>
@@ -321,7 +332,7 @@ export class Analyzer extends Component {
                 Promedio de valor por m² (según la comuna)
               </h3>
               <h4 className='right-analyzer-section-container-data'>
-                {this.state.selectedStratumPrice}
+                {this.state.selectedCommunePrice}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>

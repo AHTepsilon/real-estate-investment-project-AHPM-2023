@@ -1,3 +1,8 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+$lightBlue: #F2F6FD;
+
 .large-analyzer-section{
     display: flex;
     flex-direction: row;
@@ -16,6 +21,22 @@
 
                 &-title{
                     margin-bottom: 1em;
+                }
+
+                &-btn{
+                    background-color: $darkGreen;
+                    color: white;
+                    border: none;
+                    width: auto;
+                    height: 3em;
+                    width: 15em;
+                    margin-top: 3em;
+                    border-radius: 6px;
+
+                    &:hover{
+                        cursor: pointer;
+                        background-color: darken($color: $darkGreen, $amount: 5);
+                    }
                 }
 
                 &-secondary{
