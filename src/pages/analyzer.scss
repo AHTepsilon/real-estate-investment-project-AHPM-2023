@@ -3,8 +3,8 @@
     flex-direction: row;
     .analyzer-section{
 
-        margin: 2em 5em; 
-        width: 40em;
+        margin: 2em 2em 0 5em; 
+        width: 30em;
         
         &-inner{
 
@@ -15,7 +15,7 @@
                 margin-bottom: 4em;
 
                 &-title{
-
+                    margin-bottom: 1em;
                 }
 
                 &-secondary{
@@ -29,7 +29,7 @@
 
                     &-input{
                         height: 2em;
-                        width: 20em;
+                        width: 30em;
                         border-radius: 6px;
                         border: 1px solid #CDCFD0;
                     }
@@ -41,7 +41,7 @@
                     }
 
                     &-tag{
-
+                        margin-bottom: 0.5em;
                     }
                 }
             }

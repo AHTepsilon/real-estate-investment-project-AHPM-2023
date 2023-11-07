@@ -6,7 +6,7 @@ export class Analyzer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          analysisClicked: true,
+          analysisClicked: false,
           data: {propertyValue: 0, propertyExtraCosts: 0, downPayment: 0},
           maxRentValue: '',
           minRentValue: '',
@@ -129,18 +129,18 @@ export class Analyzer extends Component {
   render() {
     return (
       <section className='large-analyzer-section'>
-        <section className='analyzer-section'>
+        <section className='analyzer-section' id='analyzer-section-reduce'>
           <h1 className='analyzer-section-title'>Analizador de inversiones</h1>
           <div className='analyzer-section-inner-div'>
             <h3 className='analyzer-section-inner-div-title'>Características de la propiedad</h3>
             <h4 className='analyzer-section-inner-div-title'>Ubicación</h4>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Dirección</p>
-              <input type='text' onChange={(e) => {this.addToData(e.target.value, 'address')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='text' onChange={(e) => {this.addToData(e.target.value, 'address')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Barrio</p>
-              <input type='text' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='text' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Comuna</p>
@@ -191,15 +191,15 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Metraje (m²)</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'meters')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'meters')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Número de habitaciones</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'roomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'roomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Número de baños</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'bathroomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'bathroomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Parqueaderos</p>
@@ -225,26 +225,26 @@ export class Analyzer extends Component {
             <h1 className='analyzer-section-title'>Aspectos financieros</h1>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Valor de la propiedad (En pesos colombianos)</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyValue')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyValue')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Costos adicionales (Impuestos, arreglos, etc.)</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
-              <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
+              <input id='analyzer-section-reduce' type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
             </div>
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
             <div>
               <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Cuota inicial</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje del préstamo</p>
-              <input type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
                 <datalist id="interestPercentages">
                   <option value={20}></option>
                   <option value={30}></option>
@@ -258,12 +258,12 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Término (años)</p>
-              <input type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
               <p>{this.state.data.loanTerm} años</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Tasa de interés</p>
-              <input type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
               <p>{this.state.data.interestRate}%</p>
             </div>
             </div>
@@ -302,7 +302,7 @@ export class Analyzer extends Component {
             </div>
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
-                Valor por medio cuadrado de esta propiedad
+                Valor por metro cuadrado de esta propiedad
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.pricePerM2}
@@ -311,6 +311,14 @@ export class Analyzer extends Component {
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Promedio de valor por m² (según el estrato)
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.selectedStratumPrice}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Promedio de valor por m² (según la comuna)
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}

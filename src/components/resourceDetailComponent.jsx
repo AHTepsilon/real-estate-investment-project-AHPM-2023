@@ -17,6 +17,19 @@ function ResourceDetailComponent() {
                 if (docSnap.exists()) {
                     setData(docSnap.data());
                 }
+                else{
+                    try {
+                        const docSnap = await getDoc(doc(db, "news", id));
+                        if (docSnap.exists()) {
+                            setData(docSnap.data());
+                        }
+                        else{
+                            
+                        }
+                    } catch (error) {
+                        console.error('Error al obtener el documento:', error);
+                    }
+                }
             } catch (error) {
                 console.error('Error al obtener el documento:', error);
             }

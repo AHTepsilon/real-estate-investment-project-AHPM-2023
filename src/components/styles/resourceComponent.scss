@@ -1,6 +1,9 @@
 $darkGreen: #2D5F65;
 $purble: #8358F5;
 $lightPurble: #EEE8FE;
+$orange: #F5921D;
+$lightOrange: #fdedda;
+$gray: #676767;
 
 .resource-div{
     display: flex;
@@ -9,8 +12,8 @@ $lightPurble: #EEE8FE;
     padding: 0.5em;
     height: 6em;
 
-    background-color: $lightPurble;
-    border-right: 10px solid $purble;
+    background-color: $lightOrange;
+    border-right: 10px solid $orange;
 
     margin: 2em;
 
@@ -25,18 +28,18 @@ $lightPurble: #EEE8FE;
         flex-direction: column;
 
         &-h3{
-            color: $purble;
+            color: $gray;
             font-size: 24px;
             margin: 0.5em 0;
         }
     
         &-p{
-    
+            color: $gray;
         }
     }
 
     &:hover{
         cursor: pointer;
-        background-color: darken($color: $lightPurble, $amount: 5);
+        background-color: darken($color: $lightOrange, $amount: 5);
     }
 }
