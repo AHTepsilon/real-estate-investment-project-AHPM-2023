@@ -12,7 +12,7 @@ function LoginSignUpModalComponent(){
                         <img className='LoginSignUpModalComponent-div-upper-left-smile' src="/smile.png" alt="" />
                     </div>
                     <div className='LoginSignUpModalComponent-div-upper-right'>
-                        <h2 className='LoginSignUpModalComponent-div-upper-right-title'>¡Hola inversionisa!</h2>
+                        <h2 className='LoginSignUpModalComponent-div-upper-right-title'>¡Hola inversionista!</h2>
                         <p className='LoginSignUpModalComponent-div-upper-right-title-info'>Para iniciar tu búsqueda es necesario que <b>inicies sesión</b> o te <b>registres</b>, así podremos moldear la experiencia a tu medida.</p>
                     </div>
                 </div>

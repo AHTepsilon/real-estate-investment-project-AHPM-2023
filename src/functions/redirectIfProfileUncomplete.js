@@ -1,5 +1,5 @@
 import { auth, db } from "../firebase/firebase.js"
-import { getDoc, doc } from "@firebase/firestore"
+import { getDoc, doc, setDoc } from "@firebase/firestore"
 
 async function redirectIfProfileUncomplete(id){
     if(id != null){
@@ -9,12 +9,18 @@ async function redirectIfProfileUncomplete(id){
 
         if (docSnap.exists()) {
             let completedProfile = docSnap.data().hasCompletedProfile;
-            if(!completedProfile){
+            if(!completedProfile || completedProfile == null){
                 alert("debes completar tu perfil para usar nuestros servicios");
                 window.location.href = '/nivelation'
             }
           } else {
-            console.log("No such document!");
+            await setDoc(doc(db, "users", id), {
+              hasCompletedProfile: false,
+              id: id,
+            });
+
+            alert("debes completar tu perfil para usar nuestros servicios");
+            window.location.href = '/nivelation'
           }
     }
 }
