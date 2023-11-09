@@ -101,24 +101,25 @@ class Nivelation extends Component {
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Has invertido en el mercado de bienes raíces anteriormente?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='4' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>Sí</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' name='invested' value='-1' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>No</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='invested' value='4' type="radio" onChange={(e) => {this.setState({hasInvested: parseInt(e.target.value)})}}/><p className='question-box-p'>Sí</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Qué tan arriesgado consideras que eres en temas financieros?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='5' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Arriesgado</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='2' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Poco arriesgado</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='0' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Nada arriesgado</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='2' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Poco arriesgado</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='riskTaker' value='5' type="radio" onChange={(e) => {this.setState({riskTaker: parseInt(e.target.value)})}}/><p className='question-box-p'>Arriesgado</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                 <h3 className='question-box-title'>¿Con que frase te sientes mejor identificad@ con respecto a las inversiones?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='2' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Invertiría todo mi dinero en instrumentos con poco riesgo, aunque su rentabilidad sea baja.</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='1' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Invertiría una parte de mi dinero en instrumentos de bajo riesgo y otra, en aquellos que aunque son más riesgosos, tienen mayor rentabilidad.</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='3' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Invertiría todo mi dinero en instrumentos de alto rendimiento para maximizar mi ganancia, aún cuando esto signifique asumir mayores riesgos.</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='1' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Busco invertir en instrumentos con rentabilidad estable, aunque la misma sea baja. Pienso detenidamente para asegurar capital.</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='2' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Estoy dispuesto a tolerar un riego moderado para aumentar mis ganancias, mientras exista un balance entre la rentabilidad y la seguridad.</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='3' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Busco los mayores rendimientos posibles, asumiendo el riesgo que sea necesario
+para obtener un mayor crecimiento de capital.</p></div>
                     </div>
                 </div> 
             </div>
