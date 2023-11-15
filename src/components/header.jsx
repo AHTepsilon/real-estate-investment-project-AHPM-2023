@@ -5,6 +5,7 @@ import { auth } from '../firebase/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { setDoc, doc } from 'firebase/firestore';
 import './styles/header.scss';
+import './styles/header-media-queries.scss';
 
 export default class Header extends Component {
     constructor(props){

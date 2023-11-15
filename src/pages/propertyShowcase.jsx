@@ -8,7 +8,8 @@ import PropertyList from '../components/propertyList';
 import GetSimilarity from '../functions/recommendationSystem';
 import { property } from 'underscore';
 import { redirectIfProfileUncomplete } from '../functions/redirectIfProfileUncomplete'
-import './propertyShowcase.scss'
+import './propertyShowcase.scss';
+import './propertyShowcase-media-queries.scss';
 
 export default class PropertyShowcase extends Component {
 
