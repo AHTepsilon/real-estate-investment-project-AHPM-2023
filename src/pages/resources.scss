@@ -1,5 +1,12 @@
-.resources-section{
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+$orange: #F5921D;
+$lightOrange: #fdedda;
+$gray: #676767;
 
+.resources-section{
+    margin: 2em;
 
     &-title{
         margin: 1.3em;
@@ -7,5 +14,34 @@
 
     &-subtitle{
         margin: 2em; 
+    }
+
+    &-tabs{
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 4em 2em;
+        
+        &-clickable{
+            margin: 0 2em;
+
+            &-re{
+                border-bottom: solid;
+                border-color: $orange;
+                border-width: 2px;
+            }
+
+            &-ne{
+                border-color: $orange;
+                border-width: 2px;
+            }
+
+            &:hover{
+                cursor: pointer;
+                color: $orange;
+            }
+        }
     }
 }

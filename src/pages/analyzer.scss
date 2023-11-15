@@ -1,21 +1,101 @@
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+$lightBlue: #F2F6FD;
+
 .large-analyzer-section{
     display: flex;
     flex-direction: row;
     .analyzer-section{
 
-        margin: 2em; 
+        margin: 2em 2em 0 5em; 
+        width: 30em;
         
-        &-title{
-          
-        }
-    
-        &-subtitle{
-            
+        &-inner{
+
+
+            &-div{
+
+                margin-top: 2em;
+                margin-bottom: 4em;
+
+                &-title{
+                    margin-bottom: 1em;
+                }
+
+                &-btn{
+                    background-color: $darkGreen;
+                    color: white;
+                    border: none;
+                    width: auto;
+                    height: 3em;
+                    width: 15em;
+                    margin-top: 3em;
+                    border-radius: 6px;
+
+                    &:hover{
+                        cursor: pointer;
+                        background-color: darken($color: $darkGreen, $amount: 5);
+                    }
+                }
+
+                &-secondary{
+                    margin-top: 1em;
+
+                    &-select{
+                        height: 2em;
+                        border-radius: 6px;
+                        border: 1px solid #CDCFD0;
+                    }
+
+                    &-input{
+                        height: 2em;
+                        width: 30em;
+                        border-radius: 6px;
+                        border: 1px solid #CDCFD0;
+                    }
+                    
+                    &-checkbox{
+                        height: 1em;
+                        width: 1em;
+                        margin-top: 1em;
+                    }
+
+                    &-tag{
+                        margin-bottom: 0.5em;
+                    }
+                }
+            }
         }
     }
 
     .right-analyzer-section{
+        margin: 2em 5em; 
 
+        &-container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            &-inner{
+                display: flex;
+                flex-direction: column;
+            }
+
+            &-tag{
+                
+            }
+
+            &-data{
+
+            }
+        }
+
+        h4{
+            font-weight: normal;
+
+            margin: 1em;
+        }
     }
 }
 

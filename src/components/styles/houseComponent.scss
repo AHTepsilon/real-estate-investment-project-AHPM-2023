@@ -67,11 +67,11 @@ $darkBlue: #003E69;
             flex-direction: column;
         }
         &-address{
-            margin: 0.5em 1em;
+            margin: 0.5em 1em 2em 1em;
         }
     }
 
     &:hover{
-        background-color: darken($color: $lightPurble, $amount: 5);
+        background-color: darken($color: white, $amount: 5);
     }
 }

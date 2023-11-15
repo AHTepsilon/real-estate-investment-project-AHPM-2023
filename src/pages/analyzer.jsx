@@ -17,27 +17,27 @@ export class Analyzer extends Component {
           maxTimeForInvestmentReturn: '',
           minTimeForInvestmentReturn: '',
           communeAvgPrice: {
-            '1': 0,
+            '1': 2300000,
             '2': 3160000,
             '3': 2905000,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0,
-            '10': 0,
-            '11': 0,
-            '12': 0,
-            '13': 0,
-            '14': 0,
-            '15': 0,
-            '16': 0,
+            '4': 2890000,
+            '5': 2690000,
+            '6': 2450000,
+            '7': 2300000,
+            '8': 2560000,
+            '9': 2650000,
+            '10': 3170000,
+            '11': 2430000,
+            '12': 2160000,
+            '13': 1650000,
+            '14': 1320000,
+            '15': 1420000,
+            '16': 1856000,
             '17': 3363000,
-            '18': 0,
+            '18': 2360000,
             '19': 3166000,
-            '20': 0,
-            '21': 0,
+            '20': 1280000,
+            '21': 1469000,
             '22': 4327000,
           },
           stratumAvgPrice: {
@@ -49,6 +49,7 @@ export class Analyzer extends Component {
             'six': 4355000,
           },
           selectedStratumPrice: 0,
+          selectedCommunePrice: 0,
           pricePerM2: 0,
           totalLoanPayment: 0,
           monthlyPayment: 0,
@@ -86,25 +87,35 @@ export class Analyzer extends Component {
     this.setState({minTimeForInvestmentReturn: minTimeReturn});
     this.setState({maxTimeForInvestmentReturn: maxTimeReturn});
 
-    switch(this.state.data.stratum){
-      case '1':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.one).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '2':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.two).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '3':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.three).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '4':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.four).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '5':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.five).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
-      case '6':
-        this.setState({selectedStratumPrice: (this.state.stratumAvgPrice.six).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
-        break;
+    const stratumPriceMap = {
+      '1': this.state.stratumAvgPrice.one,
+      '2': this.state.stratumAvgPrice.two,
+      '3': this.state.stratumAvgPrice.three,
+      '4': this.state.stratumAvgPrice.four,
+      '5': this.state.stratumAvgPrice.five,
+      '6': this.state.stratumAvgPrice.six,
+    };
+
+    const selectedStratumPrice = stratumPriceMap[this.state.data.stratum];
+
+    if (selectedStratumPrice !== undefined) {
+      this.setState({
+        selectedStratumPrice: selectedStratumPrice.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'COP',
+        }),
+      });
+    }
+
+    const selectedCommunePrice = this.state.communeAvgPrice[this.state.data.commune]
+
+    if (selectedCommunePrice !== undefined) {
+      this.setState({
+        selectedCommunePrice: selectedCommunePrice.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'COP',
+        }),
+      });
     }
 
     let loanPayment = ((((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100))
@@ -129,18 +140,18 @@ export class Analyzer extends Component {
   render() {
     return (
       <section className='large-analyzer-section'>
-        <section className='analyzer-section'>
+        <section className='analyzer-section' id='analyzer-section-reduce'>
           <h1 className='analyzer-section-title'>Analizador de inversiones</h1>
           <div className='analyzer-section-inner-div'>
             <h3 className='analyzer-section-inner-div-title'>Características de la propiedad</h3>
             <h4 className='analyzer-section-inner-div-title'>Ubicación</h4>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Dirección</p>
-              <input type='text' onChange={(e) => {this.addToData(e.target.value, 'address')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='text' onChange={(e) => {this.addToData(e.target.value, 'address')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Barrio</p>
-              <input type='text' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='text' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Comuna</p>
@@ -191,15 +202,15 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Metraje (m²)</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'meters')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'meters')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Número de habitaciones</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'roomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'roomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Número de baños</p>
-              <input type='number' onChange={(e) => {this.addToData(e.target.value, 'bathroomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'bathroomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Parqueaderos</p>
@@ -225,26 +236,26 @@ export class Analyzer extends Component {
             <h1 className='analyzer-section-title'>Aspectos financieros</h1>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Valor de la propiedad (En pesos colombianos)</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyValue')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyValue')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Costos adicionales (Impuestos, arreglos, etc.)</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
-              <input type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
             </div>
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
             <div>
               <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Cuota inicial</p>
-              <input type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje del préstamo</p>
-              <input type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
                 <datalist id="interestPercentages">
                   <option value={20}></option>
                   <option value={30}></option>
@@ -258,17 +269,17 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Término (años)</p>
-              <input type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
               <p>{this.state.data.loanTerm} años</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Tasa de interés</p>
-              <input type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
               <p>{this.state.data.interestRate}%</p>
             </div>
             </div>
               }
-            <button onClick={this.performAnalysis}>
+            <button onClick={this.performAnalysis} className='analyzer-section-inner-div-btn'>
               Analizar
             </button>
           </div>
@@ -276,49 +287,71 @@ export class Analyzer extends Component {
         <section className='right-analyzer-section'>
           {this.state.analysisClicked === true && 
           <div className='right-analyzer-section-container'>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Rango de valor de alquiler: 
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minRentValue} - {this.state.maxRentValue}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 A 12 meses puedes obtener un retorno de entre
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minEarningsAfterYear} y {this.state.maxEarningsAfterYear}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Años para obtener un retorno completo de la inversión
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 Entre {this.state.minTimeForInvestmentReturn} y {this.state.maxTimeForInvestmentReturn} años
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
-                Valor por medio cuadrado de esta propiedad
+                Valor por metro cuadrado de esta propiedad
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.pricePerM2}
               </h4>
+            </div>      
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Promedio de valor por m² (según el estrato)
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Promedio de valor por m² (según la comuna)
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.selectedCommunePrice}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Pago total del préstamo
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.totalLoanPayment}
               </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Pago mensual del préstamo
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.monthlyPayment}
               </h4>
-            </div>}
+            </div>
+          </div>}
         </section>
       </section>
     )
