@@ -177,10 +177,10 @@ export default class PropertyShowcase extends Component {
               <div className='propertyShowcase-filtersSection-area-div-1-1'>
                 <div className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs'>
                 <button onClick={(e)=> {this.setState({parkingFilter: ''})}} className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>Cualquiera</button>
-                  <button onClick={(e)=> {this.setState({parkingFilter: 1})}} className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>No tiene</button>
-                  <button onClick={(e)=> {this.setState({parkingFilter: 2})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>1</button>
-                  <button onClick={(e)=> {this.setState({parkingFilter: 3})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>2</button>
-                  <button onClick={(e)=> {this.setState({parkingFilter: 4})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>3+</button>
+                  <button onClick={(e)=> {this.setState({parkingFilter: '0'})}} className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>No tiene</button>
+                  <button onClick={(e)=> {this.setState({parkingFilter: '1'})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>1</button>
+                  <button onClick={(e)=> {this.setState({parkingFilter: '2'})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>2</button>
+                  <button onClick={(e)=> {this.setState({parkingFilter: '3'})}}  className='propertyShowcase-filtersSection-area-div-1-1-buttonInputs-button'>3+</button>
                 </div>
               </div>
             </div>
