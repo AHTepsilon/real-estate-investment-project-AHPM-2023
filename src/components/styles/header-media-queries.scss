@@ -6,6 +6,53 @@
             align-items: center;
             justify-content: space-between;
             padding: 0;
+
+            &-left-div{
+                display: flex;
+                flex-direction: row;
+                &-logo-div{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    &-img{
+                        width: 173px;
+                        margin-left: 2em;
+                    }
+                }
+                &-list-div{
+    
+                    margin-left: 5em;
+                    &-ul{
+                        display: flex;
+                        flex-direction: row;
+                        list-style: none;
+        
+                        &-li{
+                            margin: 2em;
+                        }
+                    }
+                }
+            }
+            &-right-div{
+                margin-left: 40em;
+    
+                &-notif{
+                    
+                    &-img{
+                        margin-right: 22px;
+                        display: none;
+                    }
+                }
+    
+                &-user{
+                    &-img{
+                        margin-right: 2em;
+                    &:hover{
+                        cursor: pointer;
+                        }
+                    }
+                }
+            }
         }
     }
 }
