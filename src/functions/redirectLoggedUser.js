@@ -8,7 +8,7 @@ function redirectLoggedUser(){
         if (user) {
           const uid = user.uid;
           id = uid;
-          window.location.href = "/"
+          window.location.replace("/");
         } else {
           
         }

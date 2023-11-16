@@ -11,7 +11,7 @@ async function redirectIfProfileUncomplete(id){
             let completedProfile = docSnap.data().hasCompletedProfile;
             if(!completedProfile || completedProfile == null){
                 alert("debes completar tu perfil para usar nuestros servicios");
-                window.location.href = '/nivelation'
+                window.location.replace('/nivelation');
             }
           } else {
             await setDoc(doc(db, "users", id), {
@@ -20,7 +20,7 @@ async function redirectIfProfileUncomplete(id){
             });
 
             alert("debes completar tu perfil para usar nuestros servicios");
-            window.location.href = '/nivelation'
+            window.location.replace('/nivelation');
           }
     }
 }

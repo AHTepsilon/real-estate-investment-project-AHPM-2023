@@ -61,7 +61,7 @@ export default class SignUp extends Component {
 
     alert("Usuario creado con id " + this.state.uid);
 
-    window.location.href = "/nivelation";
+    window.location.replace("/nivelation");
   }
 
   render() {

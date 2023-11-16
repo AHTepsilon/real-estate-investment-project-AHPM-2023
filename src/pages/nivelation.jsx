@@ -67,7 +67,7 @@ class Nivelation extends Component {
         preference_characteristics_level: this.state.preference_characteristics_level,
         hasCompletedProfile: true,
 
-      }).then(() => {window.location.href = '/'});
+      }).then(() => {window.location.replace("/")});
   }
 
   toggleCheck = (e) => {

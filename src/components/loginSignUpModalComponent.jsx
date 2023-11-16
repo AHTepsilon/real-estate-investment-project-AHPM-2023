@@ -17,8 +17,8 @@ function LoginSignUpModalComponent(){
                     </div>
                 </div>
                 <div className='LoginSignUpModalComponent-div-lower'>
-                    <button onClick={() => {window.location.href = '/login'}} className='LoginSignUpModalComponent-div-lower-login'>Iniciar sesión</button>
-                    <button onClick={() => {window.location.href = '/signup'}} className='LoginSignUpModalComponent-div-lower-signup'>Crear una cuenta</button>
+                    <button onClick={() => {window.location.replace('/login')}} className='LoginSignUpModalComponent-div-lower-login'>Iniciar sesión</button>
+                    <button onClick={() => {window.location.replace('/signup')}} className='LoginSignUpModalComponent-div-lower-signup'>Crear una cuenta</button>
                 </div>
             </div>
         </div>

@@ -34,7 +34,7 @@ const getData = async() => {
 
 const logOut = () => {
     signOut(auth).then(() => {
-    window.location.href = '/';
+    window.location.replace('/');
     }).catch((error) => {
     console.log(error);
      });

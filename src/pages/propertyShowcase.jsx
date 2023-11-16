@@ -74,7 +74,7 @@ export default class PropertyShowcase extends Component {
         })
     } else{
       alert('Necesitas iniciar sesión para usar nuestros servicios de búsqueda de inmuebles');
-      window.location.href = '/signup';
+      window.location.replace('/signup');
     }});
   }
 
