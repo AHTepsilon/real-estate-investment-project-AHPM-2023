@@ -1,5 +1,6 @@
 import {auth} from "../firebase/firebase.js"
-import { onAuthStateChanged } from "@firebase/auth"
+import { onAuthStateChanged } from "@firebase/auth";
+import goToLink from "./goToLink.js";
 
 let id;
 
@@ -8,7 +9,7 @@ function redirectLoggedUser(){
         if (user) {
           const uid = user.uid;
           id = uid;
-          window.location.replace("/");
+          goToLink("/");
         } else {
           
         }

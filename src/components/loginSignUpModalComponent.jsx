@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './styles/loginSignUpModalComponent.scss'
+import goToLink from "../functions/goToLink.js";
 
 function LoginSignUpModalComponent(){
 
@@ -17,8 +18,8 @@ function LoginSignUpModalComponent(){
                     </div>
                 </div>
                 <div className='LoginSignUpModalComponent-div-lower'>
-                    <button onClick={() => {window.location.replace('/login')}} className='LoginSignUpModalComponent-div-lower-login'>Iniciar sesión</button>
-                    <button onClick={() => {window.location.replace('/signup')}} className='LoginSignUpModalComponent-div-lower-signup'>Crear una cuenta</button>
+                    <button onClick={() => {goToLink('/login')}} className='LoginSignUpModalComponent-div-lower-login'>Iniciar sesión</button>
+                    <button onClick={() => {goToLink('/signup')}} className='LoginSignUpModalComponent-div-lower-signup'>Crear una cuenta</button>
                 </div>
             </div>
         </div>

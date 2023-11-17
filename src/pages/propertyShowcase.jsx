@@ -10,6 +10,7 @@ import { property } from 'underscore';
 import { redirectIfProfileUncomplete } from '../functions/redirectIfProfileUncomplete'
 import './propertyShowcase.scss';
 import './propertyShowcase-media-queries.scss';
+import goToLink from "../functions/goToLink.js";
 
 export default class PropertyShowcase extends Component {
 
@@ -74,7 +75,7 @@ export default class PropertyShowcase extends Component {
         })
     } else{
       alert('Necesitas iniciar sesión para usar nuestros servicios de búsqueda de inmuebles');
-      window.location.replace('/signup');
+      goToLink('/signup');
     }});
   }
 

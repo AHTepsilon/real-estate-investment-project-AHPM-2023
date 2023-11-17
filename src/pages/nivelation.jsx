@@ -4,6 +4,8 @@ import { onAuthStateChanged } from 'firebase/auth'
 import {db, auth} from '../firebase/firebase.js'
 import './nivelation.scss'
 
+import goToLink from "../functions/goToLink.js";
+
 class Nivelation extends Component {
     
     constructor(props){
@@ -67,7 +69,7 @@ class Nivelation extends Component {
         preference_characteristics_level: this.state.preference_characteristics_level,
         hasCompletedProfile: true,
 
-      }).then(() => {window.location.replace("/")});
+      }).then(() => {goToLink("/")});
   }
 
   toggleCheck = (e) => {
