@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { id } from '../functions/redirectLoggedUser';
 import './user.scss'
+import goToLink from "../functions/goToLink.js";
 
 const getUserData = () => {
     return new Promise((resolve, reject) => {
@@ -34,7 +35,7 @@ const getData = async() => {
 
 const logOut = () => {
     signOut(auth).then(() => {
-    window.location.replace('/');
+    goToLink('/');
     }).catch((error) => {
     console.log(error);
      });
@@ -62,7 +63,7 @@ const User = () => {
                     <button  className='userPage-inner-button' onClick={logOut}>Cerrar sesión</button>
                     <Link  className='userPage-inner-link' to='/nivelation'>Repetir el formulario de nivelación</Link>
                 </div>
-              )}
+              )}  
         </div>
     )
 }

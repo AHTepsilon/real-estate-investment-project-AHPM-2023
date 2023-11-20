@@ -5,6 +5,7 @@ import { auth, db } from '../firebase/firebase.js';
 import { doc, setDoc } from 'firebase/firestore';
 import { redirectLoggedUser } from '../functions/redirectLoggedUser.js';
 import './signup.scss';
+import goToLink from "../functions/goToLink.js";
 
 export default class SignUp extends Component {
 
@@ -61,7 +62,7 @@ export default class SignUp extends Component {
 
     alert("Usuario creado con id " + this.state.uid);
 
-    window.location.replace("/nivelation");
+    goToLink("/nivelation");
   }
 
   render() {

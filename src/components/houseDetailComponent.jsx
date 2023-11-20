@@ -117,11 +117,19 @@ function HouseDetailComponent() {
                 <div className='houseDetailComponent-analysis-lower'>
                     <div className='houseDetailComponent-analysis-lower-inner'>
                         <h3 className='houseDetailComponent-analysis-lower-inner-title'>Rango de valor de alquiler</h3>
-                        <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {((data.precio)*0.005).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {((data.precio)*0.01).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+                        <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {((data.precio)*0.003).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {((data.precio)*0.006).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-inner'>
-                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Potencial retorno luego de 10 años</h3>
-                        <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {(((data.precio)*0.005)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {(((data.precio)*0.01)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de alquiler por m²</h3>
+                        <p className='houseDetailComponent-analysis-lower-inner-value'>{(((data.precio)*0.003) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} a {(((data.precio)*0.006) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+                    </div>
+                    <div className='houseDetailComponent-analysis-lower-inner'>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de propiedad por m²</h3>
+                        <p className='houseDetailComponent-analysis-lower-inner-value'>{(data.precio / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+                    </div>
+                    <div className='houseDetailComponent-analysis-lower-inner'>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Potenciales ingresos en un año</h3>
+                        <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {(((data.precio)*0.003)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {(((data.precio)*0.006)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-inner'>
                         <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de propiedad por m²</h3>
@@ -142,12 +150,8 @@ function HouseDetailComponent() {
                         <p className='houseDetailComponent-analysis-lower-inner-value'>{interestRate}%</p>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-inner'>
-                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio por m² del estrato</h3>
+                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio de alquileres del sector</h3>
                         <CalculateAvg list={communeAvgPrice} data={data.comuna}/>
-                    </div>
-                    <div className='houseDetailComponent-analysis-lower-inner'>
-                        <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio por m² de la comuna</h3>
-                        <CalculateAvg list={stratumAvgPrice} data={data.estrato}/>
                     </div>
                 </div>
             </div>
