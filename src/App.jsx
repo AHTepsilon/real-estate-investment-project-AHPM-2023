@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './AppNew.scss'
+import './App-media-queries.scss'
 import {Link} from 'react-router-dom'
 import { auth, db } from './firebase/firebase.js'
 import { onAuthStateChanged } from "firebase/auth";
@@ -55,7 +56,7 @@ function App() {
       </div>
       <div className='landing-section-second'>
             <div className='landing-section-second-left'>
-              <img src="/Group8757.png" alt="" />
+              <img className='landing-section-second-left-img' src="/Group8757.png" alt="" />
             </div>
             <div className='landing-section-second-right'>
               <h2 className='landing-section-second-right-h2'>Encuentras el inmueble más afin a ti</h2>
