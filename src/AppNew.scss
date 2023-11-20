@@ -27,8 +27,9 @@ body{
         width: 70%;
         
         &-img{
-            display:block;
+            display:flex;
             border-radius: 10px;
+            width: 82em;
         }
 
 
@@ -75,6 +76,10 @@ body{
         margin-bottom: 10em;
         &-left{
             display: flex;
+
+            &-img{
+                
+            }
         }
 
         &-right{
