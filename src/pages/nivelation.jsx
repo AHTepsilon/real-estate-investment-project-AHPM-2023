@@ -21,11 +21,14 @@ class Nivelation extends Component {
             objective2: 0,
             savings: 0,
             uid: '',
-            preference_location_level: 0,
-            preference_age_level: 0,
-            preference_meters_level: 0,
-            preference_services_level: 0,
-            preference_characteristics_level: 0,
+            preference_location_level: 7,
+            preference_age_level: 7,
+            preference_meters_level: 7,
+            preference_services_level: 7,
+            preference_characteristics_level: 7,
+            preference_rooms_level: 0,
+            preference_bathrooms_level: 0,
+            preference_parking_level: 0,
         }
 
     }
@@ -118,10 +121,10 @@ class Nivelation extends Component {
                 <div className='nivelation-section-questions-left-q question-box' >
                 <h3 className='question-box-title'>¿Con que frase te sientes mejor identificad@ con respecto a las inversiones?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='1' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Busco invertir en instrumentos con rentabilidad estable, aunque la misma sea baja. Pienso detenidamente para asegurar capital.</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='1' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Busco invertir en propiedades con rentabilidad estable, aunque la misma sea baja. Pienso detenidamente para asegurar capital.</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='2' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Estoy dispuesto a tolerar un riego moderado para aumentar mis ganancias, mientras exista un balance entre la rentabilidad y la seguridad.</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' type="radio" name='identified' value='3' onChange={(e) => {this.setState({identifiedWith: parseInt(e.target.value)})}}/><p className='question-box-p'>Busco los mayores rendimientos posibles, asumiendo el riesgo que sea necesario
-para obtener un mayor crecimiento de capital.</p></div>
+                para obtener un mayor crecimiento de capital.</p></div>
                     </div>
                 </div> 
             </div>
@@ -202,7 +205,7 @@ para obtener un mayor crecimiento de capital.</p></div>
                     <h3 className='question-box-title'>¿Qué tan importante consideras que son las características (habitaciones, parqueaderos, baños, etc) del inmueble la hora de invertir en el mercado de bienes raíces?</h3>
                     <div className='question-box-divSlider'>
                         <p className='question-box-divSlider-tag'>Menos importante</p>
-                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/>
+                        <input type="range" min={1} max={3} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/>
                         <p className='question-box-divSlider-tag'>Más importante</p>
                     </div>
                 </div>

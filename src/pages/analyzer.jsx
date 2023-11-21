@@ -62,8 +62,8 @@ export class Analyzer extends Component {
 
     this.setState({pricePerM2: (this.state.data.propertyValue / this.state.data.meters).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
 
-    let maxCalculatedRentValue = this.state.data.propertyValue*0.01;
-    let minCalculatedRentValue = this.state.data.propertyValue*0.005;
+    let maxCalculatedRentValue = this.state.data.propertyValue*0.006;
+    let minCalculatedRentValue = this.state.data.propertyValue*0.003;
 
     let formattedMaxCalculatedRentValue = maxCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
     let formattedMinCalculatedRentValue = minCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
@@ -305,14 +305,6 @@ export class Analyzer extends Component {
             </div>
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
-                Años para obtener un retorno completo de la inversión
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                Entre {this.state.minTimeForInvestmentReturn} y {this.state.maxTimeForInvestmentReturn} años
-              </h4>
-            </div>
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
                 Valor por metro cuadrado de esta propiedad
               </h3>
               <h4 className='right-analyzer-section-container-data'>
@@ -321,18 +313,10 @@ export class Analyzer extends Component {
             </div>      
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
-                Promedio de valor por m² (según el estrato)
+                Promedio de valor por m² del sector
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}
-              </h4>
-            </div>
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
-                Promedio de valor por m² (según la comuna)
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                {this.state.selectedCommunePrice}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>
