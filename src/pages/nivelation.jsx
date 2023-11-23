@@ -49,22 +49,33 @@ class Nivelation extends Component {
     let investorLevel = (this.state.age + this.state.hasInvested + this.state.riskTaker + this.state.identifiedWith 
         + this.state.realInvestK + this.state.investK + this.state.objective + this.state.objective2 
         + this.state.savings);
+
+    let riskProfile;
+
+    if(investorLevel <= 10){
+        riskProfile = 'Conservador'
+    }
+    else if(investorLevel > 10 && investorLevel <= 20){
+        riskProfile = 'Moderado'
+    }
+    else if(investorLevel > 20){
+        riskProfile = 'Arriesgado';
+    }
     
     let investmentExperience = (this.state.age + this.state.hasInvested + this.state.realInvestK + this.state.investK);
     let riskTolerance = (this.state.riskTaker + this.state.identifiedWith + this.state.objective + this.state.savings);
     let financialCapacity = (this.state.identifiedWith + this.state.objective + this.state.objective2 + this.state.savings);   
 
     console.log(this.state);
-    console.log("investor level ", investorLevel);
-    console.log("investment experience ", investmentExperience);
-    console.log("risk tolerance ", riskTolerance);
-    console.log("financial capacity ", financialCapacity);
+    console.log("risk level ", investorLevel);
+    console.log("risk profile ", riskProfile);
 
     await updateDoc(doc(db, "users", this.state.uid), {
         investmentLevel: investorLevel,
         investmentExperience: investmentExperience,
         riskTolerance: riskTolerance,
         financialCapacity: financialCapacity,
+        riskProfile: riskProfile,
         preference_location_level: this.state.preference_location_level,
         preference_age_level: this.state.preference_age_level,
         preference_meters_level: this.state.preference_meters_level,
@@ -72,7 +83,7 @@ class Nivelation extends Component {
         preference_characteristics_level: this.state.preference_characteristics_level,
         hasCompletedProfile: true,
 
-      }).then(() => {goToLink("/")});
+      }).then(() => {alert('Tu perfil de riesgo es: ' + riskProfile); goToLink("/")});
   }
 
   toggleCheck = (e) => {

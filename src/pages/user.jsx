@@ -60,6 +60,7 @@ const User = () => {
                 <div className='userPage-inner'>
                     <h2 className='userPage-inner-title'>Id: {userData.id}</h2>
                     <h3  className='userPage-inner-tag'>Correo electrónico: {userData.email}</h3>
+                    <h3  className='userPage-inner-tag'>Perfil de riesgo: {userData.riskProfile}</h3>
                     <button  className='userPage-inner-button' onClick={logOut}>Cerrar sesión</button>
                     <Link  className='userPage-inner-link' to='/nivelation'>Repetir el formulario de nivelación</Link>
                 </div>
