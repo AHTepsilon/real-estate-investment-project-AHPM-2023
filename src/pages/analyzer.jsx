@@ -7,7 +7,9 @@ export class Analyzer extends Component {
         super(props);
         this.state = {
           analysisClicked: false,
-          data: {propertyValue: 0, propertyExtraCosts: 0, downPayment: 0},
+          data: {propertyValue: 0, propertyExtraCosts: 0},
+          totalInvested: 0,
+          downPayment: 0,
           maxRentValue: '',
           minRentValue: '',
           maxEarningsAfterYear: '',
@@ -53,6 +55,12 @@ export class Analyzer extends Component {
           pricePerM2: 0,
           totalLoanPayment: 0,
           monthlyPayment: 0,
+          notarialExpenses: 0,
+          monthlyFlux: 0,
+          minMonthlyFluxValue: 0,
+          maxMonthlyFluxValue: 0,
+          averageExpensesYearly: 0,
+          vacancy: 0,
         }
     }
 
@@ -73,6 +81,15 @@ export class Analyzer extends Component {
 
     this.setState({maxRentValue: formattedMaxCalculatedRentValue});
     this.setState({minRentValue: formattedMinCalculatedRentValue});
+
+    console.log('average expenses yearly:', this.state.averageExpensesYearly);
+    console.log('vacancy:', this.state.vacancy);
+
+    let minMonthlyFluxEarnings = minCalculatedRentValue - (minCalculatedRentValue * (this.state.averageExpensesYearly * 0.01)) * (1-(this.state.vacancy*0.01));
+    let maxMonthlyFluxEarnings = maxCalculatedRentValue - (maxCalculatedRentValue * (this.state.averageExpensesYearly * 0.01)) * (1-(this.state.vacancy*0.01));
+
+    this.setState({minMonthlyFluxValue: minMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    this.setState({maxMonthlyFluxValue: maxMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
 
     let minTimeReturn = 0;
     let maxTimeReturn = 0;
@@ -118,8 +135,11 @@ export class Analyzer extends Component {
       });
     }
 
-    let loanPayment = ((((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100))
+
+    let loanPayment = ((((this.state.data.propertyValue)*this.state.data.interestPercentage)/100))
     let interests = loanPayment * (this.state.data.interestRate / 100)
+
+    this.setState({downPayment: (this.state.data.propertyValue - loanPayment).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
 
     this.setState({totalLoanPayment: (loanPayment + interests).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
   
@@ -127,6 +147,11 @@ export class Analyzer extends Component {
 
     this.setState({monthlyPayment: monthlyPayment.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
     
+    let notarialExpenses = this.state.data.propertyValue * 0.025369;
+
+    this.setState({notarialExpenses: notarialExpenses.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    
+    this.setState({totalInvested: (this.state.downPayment + this.state.notarialExpenses + this.state.data.propertyExtraCosts).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
   }
 
   addToData = (value, key) => {
@@ -239,8 +264,18 @@ export class Analyzer extends Component {
               <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyValue')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>Costos adicionales (Impuestos, arreglos, etc.)</p>
+              <p className='analyzer-section-inner-div-secondary-tag'>Costos adicionales (Impuestos, arreglos, amoblado, etc.)</p>
               <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'propertyExtraCosts')}} className='analyzer-section-inner-div-secondary-input'></input>
+            </div>
+            <div className='analyzer-section-inner-div-secondary'>
+              <p className='analyzer-section-inner-div-secondary-tag'>Gastos promedio anuales de la propiedad</p>
+              <input id='analyzer-section-reduce' type='range' min={5} max={40} onChange={(e) => {this.setState({averageExpensesYearly: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p>{this.state.averageExpensesYearly}%</p>
+            </div>
+            <div className='analyzer-section-inner-div-secondary'>
+              <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje de vacancia</p>
+              <input id='analyzer-section-reduce' type='range' min={0} max={50} onChange={(e) => {this.setState({vacancy: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p>{this.state.vacancy}%</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
@@ -249,10 +284,6 @@ export class Analyzer extends Component {
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
             <div>
-              <div className='analyzer-section-inner-div-secondary'>
-              <p className='analyzer-section-inner-div-secondary-tag'>Cuota inicial</p>
-              <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(parseInt(e.target.value), 'downPayment')}} className='analyzer-section-inner-div-secondary-input'></input>
-            </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje del préstamo</p>
               <input id='analyzer-section-reduce' type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
@@ -265,7 +296,7 @@ export class Analyzer extends Component {
                   <option value={70}></option>
                 </datalist>
               <p>{this.state.data.interestPercentage}%</p>
-              <p>{(((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.data.downPayment)*this.state.data.interestPercentage)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+              <p>{(((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.downPayment)*this.state.data.interestPercentage)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Término (años)</p>
@@ -289,6 +320,14 @@ export class Analyzer extends Component {
           <div className='right-analyzer-section-container'>
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
+                Total de capital a invertir: 
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.totalInvested}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
                 Rango de valor de alquiler: 
               </h3>
               <h4 className='right-analyzer-section-container-data'>
@@ -305,6 +344,22 @@ export class Analyzer extends Component {
             </div>
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
+                Flujo neto operativo mensual: 
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.minMonthlyFluxValue} - {this.state.maxMonthlyFluxValue}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Gastos notariales
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.notarialExpenses}
+              </h4>
+            </div>   
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
                 Valor por metro cuadrado de esta propiedad
               </h3>
               <h4 className='right-analyzer-section-container-data'>
@@ -317,6 +372,14 @@ export class Analyzer extends Component {
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.selectedStratumPrice}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Cuota inicial
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.downPayment}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>

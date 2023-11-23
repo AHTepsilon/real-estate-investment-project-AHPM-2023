@@ -76,10 +76,28 @@ $lightBlue: #F2F6FD;
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
+            height: 70em;
 
             &-inner{
                 display: flex;
                 flex-direction: column;
+                margin: 1em;
+
+                &-btn{
+                    background-color: $darkGreen;
+                    color: white;
+                    border: none;
+                    width: auto;
+                    height: 3em;
+                    width: 15em;
+                    margin-top: 3em;
+                    border-radius: 6px;
+    
+                    &:hover{
+                        cursor: pointer;
+                        background-color: darken($color: $darkGreen, $amount: 5);
+                    }
+                }
             }
 
             &-tag{

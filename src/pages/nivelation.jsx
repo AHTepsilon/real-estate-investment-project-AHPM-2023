@@ -205,7 +205,7 @@ class Nivelation extends Component {
                     <h3 className='question-box-title'>¿Qué tan importante consideras que son las características (habitaciones, parqueaderos, baños, etc) del inmueble la hora de invertir en el mercado de bienes raíces?</h3>
                     <div className='question-box-divSlider'>
                         <p className='question-box-divSlider-tag'>Menos importante</p>
-                        <input type="range" min={1} max={3} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/>
+                        <input type="range" min={1} max={7} className='question-box-divSlider-slider' onChange={(e) => {this.setState({preference_characteristics_level: parseInt(e.target.value)})}}/>
                         <p className='question-box-divSlider-tag'>Más importante</p>
                     </div>
                 </div>
