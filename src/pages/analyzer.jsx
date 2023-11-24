@@ -61,11 +61,14 @@ export class Analyzer extends Component {
           maxMonthlyFluxValue: 0,
           averageExpensesYearly: 0,
           vacancy: 0,
+          valorizationPercentage: 0,
+          valorizationIndex: 0,
         }
     }
 
   performAnalysis = () => {
     console.log(this.state.data);
+    window.location.href = '#right-analyzer-section';
     this.setState({analysisClicked: true});
 
     this.setState({pricePerM2: (this.state.data.propertyValue / this.state.data.meters).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
@@ -138,6 +141,9 @@ export class Analyzer extends Component {
 
     let loanPayment = ((((this.state.data.propertyValue)*this.state.data.interestPercentage)/100))
     let interests = loanPayment * (this.state.data.interestRate / 100)
+
+    let valorizedValue = this.state.data.propertyValue * (1+(this.state.valorizationPercentage * 0.01));
+    this.setState({valorizationIndex: valorizedValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
 
     this.setState({downPayment: (this.state.data.propertyValue - loanPayment).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
 
@@ -278,6 +284,11 @@ export class Analyzer extends Component {
               <p>{this.state.vacancy}%</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
+              <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje de valorización</p>
+              <input id='analyzer-section-reduce' type='range' min={0} max={100} onChange={(e) => {this.setState({valorizationPercentage: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <p>{this.state.valorizationPercentage}%</p>
+            </div>
+            <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
               <input id='analyzer-section-reduce' type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
             </div>
@@ -315,7 +326,7 @@ export class Analyzer extends Component {
             </button>
           </div>
         </section>
-        <section className='right-analyzer-section'>
+        <section className='right-analyzer-section' id='right-analyzer-section'>
           {this.state.analysisClicked === true && 
           <div className='right-analyzer-section-container'>
             <div className='right-analyzer-section-container-inner'>
@@ -332,6 +343,14 @@ export class Analyzer extends Component {
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minRentValue} - {this.state.maxRentValue}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Precio aproximado de venta según valorización: 
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.valorizationIndex}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>
