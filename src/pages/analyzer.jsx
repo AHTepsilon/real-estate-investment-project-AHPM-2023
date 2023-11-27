@@ -63,6 +63,8 @@ export class Analyzer extends Component {
           vacancy: 0,
           valorizationPercentage: 0,
           valorizationIndex: 0,
+          minGrossRent: 0,
+          maxGrossRent: 0,
         }
     }
 
@@ -85,14 +87,17 @@ export class Analyzer extends Component {
     this.setState({maxRentValue: formattedMaxCalculatedRentValue});
     this.setState({minRentValue: formattedMinCalculatedRentValue});
 
-    console.log('average expenses yearly:', this.state.averageExpensesYearly);
-    console.log('vacancy:', this.state.vacancy);
-
     let minMonthlyFluxEarnings = minCalculatedRentValue - (minCalculatedRentValue * (this.state.averageExpensesYearly * 0.01)) * (1-(this.state.vacancy*0.01));
     let maxMonthlyFluxEarnings = maxCalculatedRentValue - (maxCalculatedRentValue * (this.state.averageExpensesYearly * 0.01)) * (1-(this.state.vacancy*0.01));
-
+    
     this.setState({minMonthlyFluxValue: minMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
     this.setState({maxMonthlyFluxValue: maxMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+
+    let minGrossRent = minCalculatedRentValue / this.state.data.propertyValue;
+    let maxGrossRent = minCalculatedRentValue / this.state.data.propertyValue;
+
+    this.setState({minGrossRent: minGrossRent});
+    this.setState({maxGrossRent: maxGrossRent});
 
     let minTimeReturn = 0;
     let maxTimeReturn = 0;
@@ -157,7 +162,12 @@ export class Analyzer extends Component {
 
     this.setState({notarialExpenses: notarialExpenses.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
     
-    this.setState({totalInvested: (this.state.downPayment + this.state.notarialExpenses + this.state.data.propertyExtraCosts).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
+    if(this.state.downPayment != 0){
+      this.setState({totalInvested: (this.state.downPayment + this.state.notarialExpenses + this.state.data.propertyExtraCosts).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    }
+    else{
+      this.setState({totalInvested: (this.state.data.propertyValue + this.state.notarialExpenses + this.state.data.propertyExtraCosts).toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
+    }
   }
 
   addToData = (value, key) => {
@@ -275,17 +285,17 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Gastos promedio anuales de la propiedad</p>
-              <input id='analyzer-section-reduce' type='range' min={5} max={40} onChange={(e) => {this.setState({averageExpensesYearly: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={5} max={40} onChange={(e) => {this.setState({averageExpensesYearly: e.target.value})}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
               <p>{this.state.averageExpensesYearly}%</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje de vacancia</p>
-              <input id='analyzer-section-reduce' type='range' min={0} max={50} onChange={(e) => {this.setState({vacancy: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={0} max={50} onChange={(e) => {this.setState({vacancy: e.target.value})}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
               <p>{this.state.vacancy}%</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje de valorización</p>
-              <input id='analyzer-section-reduce' type='range' min={0} max={100} onChange={(e) => {this.setState({valorizationPercentage: e.target.value})}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={0} max={100} onChange={(e) => {this.setState({valorizationPercentage: e.target.value})}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
               <p>{this.state.valorizationPercentage}%</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
@@ -297,7 +307,7 @@ export class Analyzer extends Component {
             <div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Porcentaje del préstamo</p>
-              <input id='analyzer-section-reduce' type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={20} max={70} list="interestPercentages" onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestPercentage')}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
                 <datalist id="interestPercentages">
                   <option value={20}></option>
                   <option value={30}></option>
@@ -307,16 +317,16 @@ export class Analyzer extends Component {
                   <option value={70}></option>
                 </datalist>
               <p>{this.state.data.interestPercentage}%</p>
-              <p>{(((this.state.data.propertyValue + this.state.data.propertyExtraCosts - this.state.downPayment)*this.state.data.interestPercentage)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
+              <p>{(((this.state.data.propertyValue + this.state.data.propertyExtraCosts)*this.state.data.interestPercentage)/100).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Término (años)</p>
-              <input id='analyzer-section-reduce' type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={1} max={30} onChange={(e) => {this.addToData(parseInt(e.target.value), 'loanTerm')}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
               <p>{this.state.data.loanTerm} años</p>
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Tasa de interés</p>
-              <input id='analyzer-section-reduce' type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <input id='analyzer-section-reduce' type='range' min={12} max={20} onChange={(e) => {this.addToData(parseInt(e.target.value), 'interestRate')}} className='analyzer-section-inner-div-secondary-input analyzer-section-inner-div-secondary-slider'></input>
               <p>{this.state.data.interestRate}%</p>
             </div>
             </div>
@@ -367,6 +377,14 @@ export class Analyzer extends Component {
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.minMonthlyFluxValue} - {this.state.maxMonthlyFluxValue}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Rentabilidad bruta mensual: 
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.minGrossRent}% - {this.state.maxGrossRent}%
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>

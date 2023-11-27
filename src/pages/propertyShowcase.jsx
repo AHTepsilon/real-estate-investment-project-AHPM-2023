@@ -111,12 +111,8 @@ export default class PropertyShowcase extends Component {
 
   render() {
     return (<div className='ps-general'>
-      <div className='ps-filters'>
-        <div className='ps-filters-area'>
-        </div>
-      </div>
       <div className='propertyShowcase'>
-        <section className='propertyShowcase-filtersSection'>
+        {/*<section className='propertyShowcase-filtersSection'>
           <div className='propertyShowcase-filtersSection-area'>
             <div className='propertyShowcase-filtersSection-area-div-1'>
               <h3 className='propertyShowcase-filtersSection-area-div-1-title'>Precio</h3>
@@ -187,7 +183,7 @@ export default class PropertyShowcase extends Component {
             </div>
             <button onClick={this.clearArray} className='propertyShowcase-filtersSection-area-button'>Aplicar filtros</button>
           </div>
-        </section>
+    </section>*/}
         <section className='propertyShowcase-section' id='propertyShowcase-section'>
           {this.state.loading && 
           <div className='propertyShowcase-section-loadDiv'>

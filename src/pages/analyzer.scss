@@ -54,6 +54,41 @@ $lightBlue: #F2F6FD;
                         border-radius: 6px;
                         border: 1px solid #CDCFD0;
                     }
+
+                    &-slider{
+                        appearance: none;
+                        background-color: $lightBlue;
+                        width: 30em;
+                        height: 1em;
+                        border-radius: 1em;
+                
+                        @mixin sliderThumb(){
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            width: 20px;
+                            height: 20px;
+                            background: #F5921D;
+                            border-radius: 10em;
+                            cursor: pointer;
+                
+                            &:hover{
+                                background-color: darken($color: #F5921D, $amount: 5);
+                            }
+                
+                            &:active{
+                                border: 2px solid #FFFFFF;
+                            }
+                        }
+                        
+                        &::-webkit-slider-thumb {
+                            @include sliderThumb();
+                          }
+                
+                          &::-moz-slider-thumb {
+                            @include sliderThumb();
+                          }
+                    }
                     
                     &-checkbox{
                         height: 1em;
@@ -81,7 +116,7 @@ $lightBlue: #F2F6FD;
             &-inner{
                 display: flex;
                 flex-direction: column;
-                margin: 1em;
+                margin: 1em 2em;
 
                 &-btn{
                     background-color: $darkGreen;
