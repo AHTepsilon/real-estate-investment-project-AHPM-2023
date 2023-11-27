@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-import './analyzer.scss'
+import React, { Component } from 'react';
+import { db } from '../firebase/firebase';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import './analyzer.scss';
 
 export class Analyzer extends Component {
     
     constructor(props){
         super(props);
         this.state = {
+          listOfProperties: [],
           analysisClicked: false,
           data: {propertyValue: 0, propertyExtraCosts: 0},
           totalInvested: 0,
@@ -65,8 +68,25 @@ export class Analyzer extends Component {
           valorizationIndex: 0,
           minGrossRent: 0,
           maxGrossRent: 0,
+          yearlyGrossRent: 0,
+
+          exampleAverageHoodRentPrice: 'COP 1,800,000.00',
         }
     }
+
+  componentDidMount = async() => {
+    const q = query(collection(db, "properties"));
+
+    const querySnapshot = await getDocs(q);
+    const uniqueProperties = new Set();
+
+    querySnapshot.forEach((doc) => {
+      uniqueProperties.add(doc.data().ubicacionBarrio); 
+    });
+
+    const uniquePropertiesArray = Array.from(uniqueProperties);
+    this.setState({ listOfProperties: uniquePropertiesArray });
+  }
 
   performAnalysis = () => {
     console.log(this.state.data);
@@ -93,11 +113,14 @@ export class Analyzer extends Component {
     this.setState({minMonthlyFluxValue: minMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
     this.setState({maxMonthlyFluxValue: maxMonthlyFluxEarnings.toLocaleString('en-US', {style: 'currency', currency: 'COP'})});
 
-    let minGrossRent = minCalculatedRentValue / this.state.data.propertyValue;
-    let maxGrossRent = minCalculatedRentValue / this.state.data.propertyValue;
+    let minGrossRent = Math.round((this.state.exampleAverageHoodRentPrice / this.state.data.propertyValue) * 1000) / 1000;
+    //let maxGrossRent = Math.round(this.state.exampleAverageHoodRentPrice / this.state.data.propertyValue * 100) / 100;
 
     this.setState({minGrossRent: minGrossRent});
-    this.setState({maxGrossRent: maxGrossRent});
+    //this.setState({maxGrossRent: maxGrossRent});
+    
+    let yearlyGrossRent = Math.round((minGrossRent * 12) * 1000) / 1000;
+    this.setState({yearlyGrossRent: yearlyGrossRent});
 
     let minTimeReturn = 0;
     let maxTimeReturn = 0;
@@ -192,9 +215,15 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Barrio</p>
-              <input id='analyzer-section-reduce' type='text' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input'></input>
+              <select id='analyzer-section-reduce' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input' name="">
+              {this.state.listOfProperties.map((property) => (
+                <option key={property} value={property}>
+                  {property}
+                </option>
+              ))}
+              </select>
             </div>
-            <div className='analyzer-section-inner-div-secondary'>
+            {/*<div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Comuna</p>
               <select name="commune" onChange={(e) => {this.addToData(e.target.value, 'commune')}} className='analyzer-section-inner-div-secondary-select' id="">
                 <option value="1">1</option>
@@ -232,7 +261,7 @@ export class Analyzer extends Component {
                 <option value="6">6</option>
               </select>
             </div>
-
+              */}
             <h4 className='analyzer-section-inner-div-title'>Características y Servicios</h4>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Tipo de propiedad</p>
@@ -381,10 +410,18 @@ export class Analyzer extends Component {
             </div>
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
-                Rentabilidad bruta mensual: 
+                Rentabilidad bruta mensual (Si se aplica el valor promedio de alquiler de zona): 
               </h3>
               <h4 className='right-analyzer-section-container-data'>
-                {this.state.minGrossRent}% - {this.state.maxGrossRent}%
+                {this.state.minGrossRent}%
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Rentabilidad bruta anual (Si se aplica el valor promedio de alquiler de zona): 
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.yearlyGrossRent}%
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>
@@ -408,7 +445,15 @@ export class Analyzer extends Component {
                 Promedio de valor por m² del sector
               </h3>
               <h4 className='right-analyzer-section-container-data'>
-                {this.state.selectedStratumPrice}
+                {this.state.exampleAverageHoodRentPrice}
+              </h4>
+            </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Promedio de alquileres del sector
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.exampleAverageHoodRentPrice.toLocaleString('en-US', {style: 'currency', currency: 'COP'})}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>

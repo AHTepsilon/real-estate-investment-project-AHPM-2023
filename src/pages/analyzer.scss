@@ -111,7 +111,7 @@ $lightBlue: #F2F6FD;
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
-            height: 70em;
+            height: 80em;
 
             &-inner{
                 display: flex;
@@ -136,7 +136,7 @@ $lightBlue: #F2F6FD;
             }
 
             &-tag{
-                
+                width: 25em;
             }
 
             &-data{
