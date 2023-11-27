@@ -10,7 +10,7 @@ export class Analyzer extends Component {
         this.state = {
           listOfProperties: [],
           analysisClicked: false,
-          data: {propertyValue: 0, propertyExtraCosts: 0},
+          data: {propertyValue: 0, propertyExtraCosts: 0, neighborhood: 'Altos de Santa Isabel'},
           totalInvested: 0,
           downPayment: 0,
           maxRentValue: '',
@@ -21,29 +21,25 @@ export class Analyzer extends Component {
           maxRoi: '',
           maxTimeForInvestmentReturn: '',
           minTimeForInvestmentReturn: '',
-          communeAvgPrice: {
-            '1': 2300000,
-            '2': 3160000,
-            '3': 2905000,
-            '4': 2890000,
-            '5': 2690000,
-            '6': 2450000,
-            '7': 2300000,
-            '8': 2560000,
-            '9': 2650000,
-            '10': 3170000,
-            '11': 2430000,
-            '12': 2160000,
-            '13': 1650000,
-            '14': 1320000,
-            '15': 1420000,
-            '16': 1856000,
-            '17': 3363000,
-            '18': 2360000,
-            '19': 3166000,
-            '20': 1280000,
-            '21': 1469000,
-            '22': 4327000,
+          hoodAvgPrice: {
+            'Altos de Santa Isabel': 3500000,
+            'Cañaverales': 3160000,
+            'Ciudad Jardín': 2905000,
+            'Ciudad Pacífica': 2890000,
+            'Cristales': 2690000,
+            'Cuarto de Legua': 2450000,
+            'Juanambú': 2300000,
+            'La Alianza': 2560000,
+            'La Flora': 2650000,
+            'Multicentro': 3170000,
+            'Pance': 2430000,
+            'Pasoancho': 2160000,
+            'Prados del Limonar': 1650000,
+            'Quintas de Don Simón': 1320000,
+            'Santa Teresita': 1420000,
+            'Urbanización Venezuela': 1856000,
+            'Valle del Lili': 3363000,
+            'Villa del Prado': 2360000,
           },
           stratumAvgPrice: {
             'one': 1850000,
@@ -84,7 +80,7 @@ export class Analyzer extends Component {
       uniqueProperties.add(doc.data().ubicacionBarrio); 
     });
 
-    const uniquePropertiesArray = Array.from(uniqueProperties);
+    const uniquePropertiesArray = Array.from(uniqueProperties).sort();
     this.setState({ listOfProperties: uniquePropertiesArray });
   }
 
@@ -95,8 +91,8 @@ export class Analyzer extends Component {
 
     this.setState({pricePerM2: (this.state.data.propertyValue / this.state.data.meters).toLocaleString('en-US', {style: 'currency', currency: 'COP'})})
 
-    let maxCalculatedRentValue = this.state.data.propertyValue*0.006;
-    let minCalculatedRentValue = this.state.data.propertyValue*0.003;
+    let maxCalculatedRentValue = this.state.data.propertyValue*0.008;
+    let minCalculatedRentValue = this.state.data.propertyValue*0.005;
 
     let formattedMaxCalculatedRentValue = maxCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
     let formattedMinCalculatedRentValue = minCalculatedRentValue.toLocaleString('en-US', {style: 'currency', currency: 'COP'});
@@ -144,7 +140,7 @@ export class Analyzer extends Component {
       '6': this.state.stratumAvgPrice.six,
     };
 
-    const selectedStratumPrice = stratumPriceMap[this.state.data.stratum];
+    /*const selectedStratumPrice = stratumPriceMap[this.state.data.stratum];
 
     if (selectedStratumPrice !== undefined) {
       this.setState({
@@ -165,7 +161,7 @@ export class Analyzer extends Component {
         }),
       });
     }
-
+*/
 
     let loanPayment = ((((this.state.data.propertyValue)*this.state.data.interestPercentage)/100))
     let interests = loanPayment * (this.state.data.interestRate / 100)
@@ -215,7 +211,7 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Barrio</p>
-              <select id='analyzer-section-reduce' onChange={(e) => {this.addToData(e.target.value, 'neighborhood')}} className='analyzer-section-inner-div-secondary-input' name="">
+              <select defaultValue={'Altos de Santa Isabel'} id='analyzer-section-reduce' onChange={(e) => {this.addToData(e.target.value, 'neighborhood'); console.log(e.target.value)}} className='analyzer-section-inner-div-secondary-input' name="">
               {this.state.listOfProperties.map((property) => (
                 <option key={property} value={property}>
                   {property}
@@ -274,6 +270,7 @@ export class Analyzer extends Component {
               <p className='analyzer-section-inner-div-secondary-tag'>Metraje (m²)</p>
               <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'meters')}} className='analyzer-section-inner-div-secondary-input'></input>
             </div>
+            {/*
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>Número de habitaciones</p>
               <input id='analyzer-section-reduce' type='number' onChange={(e) => {this.addToData(e.target.value, 'roomsNum')}} className='analyzer-section-inner-div-secondary-input'></input>
@@ -300,7 +297,7 @@ export class Analyzer extends Component {
                 <option value="10-15">Entre 10 y 15 años</option>
                 <option value="16">Más de 15 años</option>
               </select>
-            </div>
+            </div>*/}
           </div>
           <div className='analyzer-section-inner-div'>
             <h1 className='analyzer-section-title'>Aspectos financieros</h1>
@@ -329,7 +326,7 @@ export class Analyzer extends Component {
             </div>
             <div className='analyzer-section-inner-div-secondary'>
               <p className='analyzer-section-inner-div-secondary-tag'>¿Compra con financiamiento?</p>
-              <input id='analyzer-section-reduce' type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing')}} className='analyzer-section-inner-div-secondary-checkbox'></input>
+              <input id='analyzer-section-reduce' type='checkbox' onChange={(e) => {this.addToData(e.target.checked, 'useFinancing'); this.setState({downPayment: 0})}} className='analyzer-section-inner-div-secondary-checkbox'></input>
             </div>
             {(this.state.data).useFinancing === false && <div></div>}
             {(this.state.data).useFinancing === true && 
@@ -408,7 +405,7 @@ export class Analyzer extends Component {
                 {this.state.minMonthlyFluxValue} - {this.state.maxMonthlyFluxValue}
               </h4>
             </div>
-            <div className='right-analyzer-section-container-inner'>
+            {/*<div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Rentabilidad bruta mensual (Si se aplica el valor promedio de alquiler de zona): 
               </h3>
@@ -423,7 +420,7 @@ export class Analyzer extends Component {
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.yearlyGrossRent}%
               </h4>
-            </div>
+          </div>*/}
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Gastos notariales
@@ -445,7 +442,7 @@ export class Analyzer extends Component {
                 Promedio de valor por m² del sector
               </h3>
               <h4 className='right-analyzer-section-container-data'>
-                {this.state.exampleAverageHoodRentPrice}
+              {((this.state.hoodAvgPrice[this.state.data.neighborhood])/this.state.data.meters).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>
@@ -453,7 +450,7 @@ export class Analyzer extends Component {
                 Promedio de alquileres del sector
               </h3>
               <h4 className='right-analyzer-section-container-data'>
-                {this.state.exampleAverageHoodRentPrice.toLocaleString('en-US', {style: 'currency', currency: 'COP'})}
+                {(this.state.hoodAvgPrice[this.state.data.neighborhood]).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}
               </h4>
             </div>
             <div className='right-analyzer-section-container-inner'>

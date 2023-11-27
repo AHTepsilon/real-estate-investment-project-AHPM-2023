@@ -8,6 +8,7 @@ import PropertyList from '../components/propertyList';
 import GetSimilarity from '../functions/recommendationSystem';
 import { property } from 'underscore';
 import { redirectIfProfileUncomplete } from '../functions/redirectIfProfileUncomplete'
+import { Link } from 'react-router-dom';
 import './propertyShowcase.scss';
 import './propertyShowcase-media-queries.scss';
 import goToLink from "../functions/goToLink.js";
