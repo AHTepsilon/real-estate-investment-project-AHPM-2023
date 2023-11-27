@@ -71,7 +71,7 @@ export class Resources extends Component {
         <div className='tab-1' id='tab-1'>
         {this.state.listOfResources.map(element => 
             <div className='resources-section-component' key={element.id}>
-                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle} id = {element.id}></ResourceComponent>
+                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle} id = {element.id} link = {element.link} obtained={element.obtained}></ResourceComponent>
             </div>)}
         </div>}
 
@@ -79,7 +79,7 @@ export class Resources extends Component {
         <div className='tab-2' id='tab-2'>
         {this.state.listOfNews.map(element => 
             <div className='resources-section-component' key={element.id}>
-                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle} id = {element.id}></ResourceComponent>
+                <ResourceComponent imgsrc = {element.imgurl} title = {element.title} info = {element.subtitle} id = {element.id} link = {element.link} obtained={element.obtained}></ResourceComponent>
             </div>)}
         </div>}
       </section>

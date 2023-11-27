@@ -1,5 +1,5 @@
-function goToLink(url){
-    window.location.replace(url);
-}
+import { useNavigate  } from 'react-router-dom';
 
-export default goToLink;
+export default function goToLink(url) {
+    window.location.href = url;
+}

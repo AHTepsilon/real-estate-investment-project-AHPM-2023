@@ -110,6 +110,7 @@ class Nivelation extends Component {
                     <h3 className='question-box-title'>Selecciona tu rango de edad</h3>
                     <div className='question-box-div'>
                         <div className='question-box-div-div'><input className='question-box-input' name='age' value='0' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>20-30 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' name='age' value='1' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>30-50 años</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' name='age' value='2' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>30-50 años</p></div>
                         <div className='question-box-div-div'><input className='question-box-input' name='age' value='1' type="radio" onChange={(e) => {this.setState({age: parseInt(e.target.value)})}}/><p className='question-box-p'>Más de 50 años</p></div>
                     </div>
@@ -141,43 +142,44 @@ class Nivelation extends Component {
             </div>
             <div className='nivelation-section-questions-right'>
                 <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Cuál es tu nivel de conocimiento sobre el mercado de bienes raíces?</h3>
+                    <h3 className='question-box-title'>¿Conoces qué tipo de inversión en bienes raices quieres hacer?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='-1' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='3' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='5' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
-                    </div>
-                </div>
-                <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Cuál es tu nivel de conocimiento en inversiones?</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='-1' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Bajo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='3' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Medio</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='5' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alto</p></div>
-                    </div>
-                </div>
-                <div className='nivelation-section-questions-left-q question-box' >
-                    <h3 className='question-box-title'>¿Cuál es tu objetivo principal al invertir en el mercado de bienes raíces?</h3>
-                    <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='1' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Asegurar y mantener capital</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='2' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Aumentar el patrimonio, ojalá con retornos estables</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='3' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Crecimiento monetario sin importar los riesgos</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='-1' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>No lo sé</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='3' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Alquiler o reventa tradicional</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge' value='5' onChange={(e) => {this.setState({realInvestK: parseInt(e.target.value)})}}/><p className='question-box-p'>Coliving, renta corta, flipping u otra</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Cuál de las siguientes afirmaciones se alinea más con tus objetivos de inversión?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='1' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Crear un flujo de efectivo pasivo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='2' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Apreciación del valor de la propiedad a largo plazo</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='3' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Diversificar mi cartera de inversiones</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='-1' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Asegurar y acumular capital por medio de ingresos mensuales (flujo pasivo de efectivo) más bien estables  </p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='3' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Una combinacion entre ingresos mensuales (flujo pasivo) y valorización</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='knowledge1' value='5' onChange={(e) => {this.setState({investK: parseInt(e.target.value)})}}/><p className='question-box-p'>Diversificar mi portafolio de inversiones, buscando crecimiento monetario aceptando las posibles pérdidas que tenga</p></div>
+                    </div>
+                </div>
+                <div className='nivelation-section-questions-left-q question-box' >
+                    <h3 className='question-box-title'>¿Cuál es el horizonte de tiempo en el que planeas mantener tu inversión?</h3>
+                    <div className='question-box-div'>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='1' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Máximo 3 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='2' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Entre 3 y 5 años</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective' value='3' onChange={(e) => {this.setState({objective: parseInt(e.target.value)})}}/><p className='question-box-p'>Más de 5 años</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >
                     <h3 className='question-box-title'>¿Cuánto de tus ahorros estarías dispuesto a invertir?</h3>
                     <div className='question-box-div'>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='1' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Menos del 30%</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='2' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Entre el 30% y el 60%</p></div>
-                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='3' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Más del 60%</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='1' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Hasta el 10%</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='2' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Entre el 10% y el 30%</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='2' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Entre el 30% y el 50 %</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='objective2' value='3' onChange={(e) => {this.setState({objective2: parseInt(e.target.value)})}}/><p className='question-box-p'>Más del 50 %</p></div>
+                    </div>
+                </div>
+                <div className='nivelation-section-questions-left-q question-box' >
+                    <h3 className='question-box-title'>¿Qué tipo de propiedades prefieres?</h3>
+                    <div className='question-box-div'>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='1' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Inmuebles nuevos</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='2' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Inmuebles usados</p></div>
+                        <div className='question-box-div-div'><input className='question-box-input' type="radio" name='savings' value='3' onChange={(e) => {this.setState({savings: parseInt(e.target.value)})}}/><p className='question-box-p'>Proyectos sobre planos</p></div>
                     </div>
                 </div>
                 <div className='nivelation-section-questions-left-q question-box' >

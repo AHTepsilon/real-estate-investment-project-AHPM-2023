@@ -41,11 +41,14 @@ function ResourceDetailComponent() {
 
     try{
         return (
-            <div className="resourceDetailComponent-div">
-                <img className="resourceDetailComponent-div-img" src={data.imgurl}></img>
-                <h1 className="resourceDetailComponent-div-title">{data.title}</h1>
-                <h3 className="resourceDetailComponent-div-subtitle">{data.subtitle}</h3>
-            </div>
+            <section className="resourceDetailComponent">
+                <div className="resourceDetailComponent-div">
+                    <img className="resourceDetailComponent-div-img" src={data.imgurl}></img>
+                    <h1 className="resourceDetailComponent-div-title">{data.title}</h1>
+                    <h3 className="resourceDetailComponent-div-subtitle">{data.subtitle}</h3>
+                    <p className="resourceDetailComponent-div-p">{data.body}</p>
+                </div>
+            </section>
         );
     }
     catch(error){
