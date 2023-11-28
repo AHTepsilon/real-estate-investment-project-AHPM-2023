@@ -45,7 +45,7 @@ export default class PropertyList extends Component {
         
         Object.values(props.propertyData).forEach((property) => {
 
-            let inherentRiskLevel = 30 - (property.califAntiguedad + property.califUbicacion + property.califCapacidadFinanciera);
+            let inherentRiskLevel = 25 - (property.califAntiguedad + property.califUbicacion + property.califCapacidadFinanciera);
             console.log('risk', inherentRiskLevel);
 
             updateDoc(doc(db, 'properties', property.id), {
