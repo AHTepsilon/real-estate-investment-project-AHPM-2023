@@ -56,6 +56,31 @@ function HouseDetailComponent() {
     '6': 4355000,
     });
     
+    const [hoodAvgPrice, setHoodAvgPrice] = useState({
+            'Altos de Santa Isabel': 3500000,
+            'Barranquilla': 2500000,
+            'Buenos Aires': 2800000,
+            'Cañaverales': 3160000,
+            'Ciudad Jardín': 2905000,
+            'Ciudad Pacífica': 2890000,
+            'Cristales': 2690000,
+            'Cuarto de Legua': 2450000,
+            'Juanambú': 2300000,
+            'Menga': 2700000,
+            'La Alianza': 2560000,
+            'La Flora': 2650000,
+            'Multicentro': 3170000,
+            'Pance': 2430000,
+            'Pasoancho': 2160000,
+            'Prados del Limonar': 1650000,
+            'Quintas de Don Simón': 1320000,
+            'Santa Teresita': 1420000,
+            'Urbanización Venezuela': 1856000,
+            'San Fernando': 2400000,
+            'Valle del Lili': 3363000,
+            'Villa del Prado': 2360000,
+    });
+    
     const [interestRate, setInterestRate] = useState(50);
     const { id } = useParams();
 
@@ -152,7 +177,7 @@ function HouseDetailComponent() {
                         </div>
                         <div className='houseDetailComponent-analysis-lower-inner'>
                             <h3 className='houseDetailComponent-analysis-lower-inner-title'>Promedio de alquileres del sector</h3>
-                            <CalculateAvg list={communeAvgPrice} data={data.comuna}/>
+                            <CalculateAvg list={hoodAvgPrice} data={data.ubicacionBarrio}/>
                         </div>
                     </div>
                 </div>
