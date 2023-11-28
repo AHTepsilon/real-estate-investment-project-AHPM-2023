@@ -135,20 +135,11 @@ html {
         &-pesos{
             color: $gray;
             margin-right: 3em;
-            
-
-            &:hover{
-                cursor: pointer;
-                ~ .houseDetailComponent-pricediv-altCurrency{
-                    display: flex;
-                }
-                
-            }
         }
 
         &-altCurrency{
             color: $orange;
-            display: none;
+
             margin-right: 2em;
         }
     }
