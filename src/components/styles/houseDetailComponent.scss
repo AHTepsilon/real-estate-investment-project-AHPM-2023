@@ -56,28 +56,32 @@ html {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        width: 80em;
+        width: 100%;
         align-items: flex-start;
         justify-content: center;
-        &-left{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 3em;
-        }
-        &-right{
+
+        &-column{
             display: flex;
             flex-direction: column;
             align-items: center;
 
-            margin: 3em;
+            margin: 1em;
         }
         &-inner{
             display: flex;
             flex-direction: column;
+            align-items: center;
             margin: 2em;
             &-title{
 
+            }
+
+            &-value{
+                width: 25em;
+            }
+
+            &-slider{
+                width: 15em;
             }
         }
     }
