@@ -3,6 +3,7 @@ $purble: #8358F5;
 $lightPurble: #EEE8FE;
 $orange: #F5921D;
 $gray: #676767;
+$lightBlue: #F2F6FD;
 
 html {
     scroll-behavior: smooth;
@@ -90,6 +91,37 @@ html {
 
             &-slider{
                 width: 15em;
+
+                appearance: none;
+                        background-color: $lightBlue;
+                        border-radius: 1em;
+                
+                        @mixin sliderThumb(){
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            width: 20px;
+                            height: 20px;
+                            background: #F5921D;
+                            border-radius: 10em;
+                            cursor: pointer;
+                
+                            &:hover{
+                                background-color: darken($color: #F5921D, $amount: 5);
+                            }
+                
+                            &:active{
+                                border: 2px solid #FFFFFF;
+                            }
+                        }
+                        
+                        &::-webkit-slider-thumb {
+                            @include sliderThumb();
+                          }
+                
+                          &::-moz-slider-thumb {
+                            @include sliderThumb();
+                          }
             }
         }
     }
