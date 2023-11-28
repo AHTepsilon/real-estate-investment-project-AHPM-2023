@@ -177,7 +177,7 @@ function HouseDetailComponent() {
                         </div>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-column'>
-                        <h2 className='houseDetailComponent-tag'>Análisis de valor</h2>
+                        <h2 className='houseDetailComponent-tag'>Análisis de valor por m²</h2>
                         <div className='houseDetailComponent-analysis-lower-inner'>
                             <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de alquiler por m²</h3>
                             <p className='houseDetailComponent-analysis-lower-inner-value'>{(((data.precio)*0.005) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} a {(((data.precio)*0.008) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { db } from '../firebase/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import './analyzer.scss';
+import './analyzer-media-queries.scss'
 
 export class Analyzer extends Component {
     
@@ -369,7 +370,9 @@ export class Analyzer extends Component {
         <section className='right-analyzer-section' id='right-analyzer-section'>
           {this.state.analysisClicked === true && 
           <div className='right-analyzer-section-container'>
-            <div className='right-analyzer-section-container-inner'>
+            <div className = 'right-analyzer-section-container-cont'>
+              <h2 className = 'right-analyzer-section-container-cont-h2'>Datos de inversón</h2>
+              <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Total de capital a invertir: 
               </h3>
@@ -409,6 +412,15 @@ export class Analyzer extends Component {
                 {this.state.minMonthlyFluxValue} - {this.state.maxMonthlyFluxValue}
               </h4>
             </div>
+            <div className='right-analyzer-section-container-inner'>
+              <h3 className='right-analyzer-section-container-tag'>
+                Gastos notariales
+              </h3>
+              <h4 className='right-analyzer-section-container-data'>
+                {this.state.notarialExpenses}
+              </h4>
+            </div>  
+            </div>
             {/*<div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Rentabilidad bruta mensual (Si se aplica el valor promedio de alquiler de zona): 
@@ -424,16 +436,10 @@ export class Analyzer extends Component {
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.yearlyGrossRent}%
               </h4>
-          </div>*/}
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
-                Gastos notariales
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                {this.state.notarialExpenses}
-              </h4>
-            </div>   
-            <div className='right-analyzer-section-container-inner'>
+          </div>*/} 
+            <div className = 'right-analyzer-section-container-cont'>
+              <h2 className = 'right-analyzer-section-container-cont-h2'>Datos de contexto</h2>
+              <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Valor por metro cuadrado de esta propiedad
               </h3>
@@ -457,29 +463,33 @@ export class Analyzer extends Component {
                 {(this.state.hoodAvgPrice[this.state.data.neighborhood]).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}
               </h4>
             </div>
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
-                Cuota inicial
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                {this.state.downPayment}
-              </h4>
             </div>
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
-                Pago total del préstamo
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                {this.state.totalLoanPayment}
-              </h4>
-            </div>
-            <div className='right-analyzer-section-container-inner'>
-              <h3 className='right-analyzer-section-container-tag'>
-                Pago mensual del préstamo
-              </h3>
-              <h4 className='right-analyzer-section-container-data'>
-                {this.state.monthlyPayment}
-              </h4>
+            <div className = 'right-analyzer-section-container-cont'>
+              <h2 className = 'right-analyzer-section-container-cont-h2'>Datos de financiamiento</h2>
+              <div className='right-analyzer-section-container-inner'>
+                <h3 className='right-analyzer-section-container-tag'>
+                  Cuota inicial
+                </h3>
+                <h4 className='right-analyzer-section-container-data'>
+                  {this.state.downPayment}
+                </h4>
+              </div>
+              <div className='right-analyzer-section-container-inner'>
+                <h3 className='right-analyzer-section-container-tag'>
+                  Pago total del préstamo
+                </h3>
+                <h4 className='right-analyzer-section-container-data'>
+                  {this.state.totalLoanPayment}
+                </h4>
+              </div>
+              <div className='right-analyzer-section-container-inner'>
+                <h3 className='right-analyzer-section-container-tag'>
+                  Pago mensual del préstamo
+                </h3>
+                <h4 className='right-analyzer-section-container-data'>
+                  {this.state.monthlyPayment}
+                </h4>
+              </div>
             </div>
           </div>}
         </section>

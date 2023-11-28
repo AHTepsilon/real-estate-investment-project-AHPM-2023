@@ -1,20 +1,173 @@
-@media (max-width: 1500px){
+$darkGreen: #2D5F65;
+$purble: #8358F5;
+$lightPurble: #EEE8FE;
+$lightBlue: #F2F6FD;
 
-    .propertyShowcase-filtersSection-area-div-1-1{
-        &-buttonInputs{
-            &-button{
-                margin: 0.2em;
+@media (max-width: 1800px){
+
+    .large-analyzer-section{
+        display: flex;
+        flex-direction: row;
+        .analyzer-section{
+    
+            margin: 2em 2em 0 5em; 
+            width: 30em;
+            
+            &-inner{
+    
+    
+                &-div{
+    
+                    margin-top: 2em;
+                    margin-bottom: 4em;
+    
+                    &-title{
+                        margin-bottom: 1em;
+                    }
+    
+                    &-btn{
+                        background-color: $darkGreen;
+                        color: white;
+                        border: none;
+                        width: auto;
+                        height: 3em;
+                        width: 15em;
+                        margin-top: 3em;
+                        border-radius: 6px;
+    
+                        &:hover{
+                            cursor: pointer;
+                            background-color: darken($color: $darkGreen, $amount: 5);
+                        }
+                    }
+    
+                    &-secondary{
+                        margin-top: 1em;
+    
+                        &-select{
+                            height: 2em;
+                            border-radius: 6px;
+                            border: 1px solid #CDCFD0;
+                        }
+    
+                        &-input{
+                            height: 2em;
+                            width: 30em;
+                            border-radius: 6px;
+                            border: 1px solid #CDCFD0;
+                        }
+    
+                        &-slider{
+                            appearance: none;
+                            background-color: $lightBlue;
+                            width: 30em;
+                            height: 1em;
+                            border-radius: 1em;
+                    
+                            @mixin sliderThumb(){
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                width: 20px;
+                                height: 20px;
+                                background: #F5921D;
+                                border-radius: 10em;
+                                cursor: pointer;
+                    
+                                &:hover{
+                                    background-color: darken($color: #F5921D, $amount: 5);
+                                }
+                    
+                                &:active{
+                                    border: 2px solid #FFFFFF;
+                                }
+                            }
+                            
+                            &::-webkit-slider-thumb {
+                                @include sliderThumb();
+                              }
+                    
+                              &::-moz-slider-thumb {
+                                @include sliderThumb();
+                              }
+                        }
+                        
+                        &-checkbox{
+                            height: 1em;
+                            width: 1em;
+                            margin-top: 1em;
+                        }
+    
+                        &-tag{
+                            margin-bottom: 0.5em;
+                        }
+                    }
+                }
             }
         }
-    }
+    
+        .right-analyzer-section{
+            margin: 2em 5em; 
+    
+            &-container{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+    
+                height: 126em !important; 
 
-    .propertyShowcase-filtersSection-area-div-1-1-textInputs{
-        display: flex;
-        flex-direction: column;
-
-        &-inner{
-            margin: 0.5em;
-        }
+                &-cont{
+                    display: flex;
+                    flex-direction: column;
+    
+                    margin: 1em;
+    
+                    padding: 1em;
+    
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 14px 0px rgba(51, 58, 76, 0.15);
+                    
+                    &-h2{
+                        
+                    }
+                }
+    
+                &-inner{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 1em 2em;
+    
+                    &-btn{
+                        background-color: $darkGreen;
+                        color: white;
+                        border: none;
+                        width: auto;
+                        height: 3em;
+                        width: 15em;
+                        margin-top: 3em;
+                        border-radius: 6px;
         
+                        &:hover{
+                            cursor: pointer;
+                            background-color: darken($color: $darkGreen, $amount: 5);
+                        }
+                    }
+                }
+    
+                &-tag{
+                    width: 25em;
+                }
+    
+                &-data{
+    
+                }
+            }
+    
+            h4{
+                font-weight: normal;
+    
+                margin: 1em;
+            }
+        }
     }
 }
