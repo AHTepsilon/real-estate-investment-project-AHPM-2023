@@ -372,14 +372,14 @@ export class Analyzer extends Component {
           <div className='right-analyzer-section-container'>
             <div className = 'right-analyzer-section-container-cont'>
               <h2 className = 'right-analyzer-section-container-cont-h2'>Datos de inversón</h2>
-              <div className='right-analyzer-section-container-inner'>
+            {/* <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Total de capital a invertir: 
               </h3>
               <h4 className='right-analyzer-section-container-data'>
                 {this.state.totalInvested}
               </h4>
-            </div>
+              </div>*/}
             <div className='right-analyzer-section-container-inner'>
               <h3 className='right-analyzer-section-container-tag'>
                 Rango de valor de alquiler: 
