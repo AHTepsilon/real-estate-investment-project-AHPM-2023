@@ -141,7 +141,7 @@ function HouseDetailComponent() {
                 </div>
                 <div className='houseDetailComponent-analysis-lower'>
                     <div className='houseDetailComponent-analysis-lower-column'>
-                    <h2 className='houseDetailComponent-tag'>Análisis de retorno</h2>
+                    <h2 className='houseDetailComponent-lower-column-header'>Análisis de retorno</h2>
                         <div className='houseDetailComponent-analysis-lower-inner'>
                             <h3 className='houseDetailComponent-analysis-lower-inner-title'>Potenciales ingresos en un año</h3>
                             <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {(((data.precio)*0.005)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {(((data.precio)*0.008)*12).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
@@ -162,7 +162,7 @@ function HouseDetailComponent() {
                         </div>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-column'>
-                        <h2 className='houseDetailComponent-tag'>Análisis de alquiler</h2>
+                        <h2 className='houseDetailComponent-lower-column-header'>Análisis de alquiler</h2>
                         <div className='houseDetailComponent-analysis-lower-inner'>
                             <h3 className='houseDetailComponent-analysis-lower-inner-title'>Rango de valor de alquiler</h3>
                             <p className='houseDetailComponent-analysis-lower-inner-value'>Entre {((data.precio)*0.005).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} y {((data.precio)*0.008).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>
@@ -177,7 +177,7 @@ function HouseDetailComponent() {
                         </div>
                     </div>
                     <div className='houseDetailComponent-analysis-lower-column'>
-                        <h2 className='houseDetailComponent-tag'>Análisis de valor por m²</h2>
+                        <h2 className='houseDetailComponent-lower-column-header'>Análisis de valor por m²</h2>
                         <div className='houseDetailComponent-analysis-lower-inner'>
                             <h3 className='houseDetailComponent-analysis-lower-inner-title'>Valor de alquiler por m²</h3>
                             <p className='houseDetailComponent-analysis-lower-inner-value'>{(((data.precio)*0.005) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})} a {(((data.precio)*0.008) / data.metrajeM2).toLocaleString('en-US', {style: 'currency', currency: 'COP'})}</p>

@@ -66,6 +66,14 @@ html {
             align-items: center;
 
             margin: 1em;
+            padding: 0.5em;
+            
+            border-radius: 10px;
+            box-shadow: 0px 4px 14px 0px rgba(51, 58, 76, 0.15);
+            
+            &-header{
+                color: $orange;
+            }
         }
         &-inner{
             display: flex;
@@ -73,7 +81,7 @@ html {
             align-items: center;
             margin: 2em;
             &-title{
-
+                
             }
 
             &-value{
@@ -85,6 +93,10 @@ html {
             }
         }
     }
+}
+
+.houseDetailComponent-lower-column-header{
+    color: $orange;
 }
 
 
